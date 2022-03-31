@@ -10,8 +10,10 @@ function main(args) {
   fs.rmSync(outFile, { force: true });
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
 
-  const AppElement = require(path.join(__dirname, appRoot)).default;
-  const appHtml = ReactDOMServer.renderToString(<AppElement />);
+  const AppElement: any = require(path.join(__dirname, appRoot)).default;
+  const appHtml = ReactDOMServer.renderToString(
+    React.createElement(AppElement)
+  );
 
   fs.writeFileSync(outFile, appHtml);
 }

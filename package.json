@@ -5,7 +5,7 @@
   "main": "index.js",
   "-type": "module",
   "scripts": {
-    "react-build": "babel-node react-build.js dist/react-build.html src/app",
+    "react-build": "babel-node --extensions .js,.ts,.tsx react-build.ts dist/react-build.html src/App",
     "build": "npm run react-build && webpack"
   },
   "devDependencies": {
@@ -13,6 +13,8 @@
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/react": "^17.0.43",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "react-dom": "^18.0.0",
