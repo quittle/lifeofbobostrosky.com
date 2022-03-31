@@ -2,11 +2,12 @@
   "name": "bobostrosky.com",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "-type": "module",
   "scripts": {
     "react-build": "babel-node --extensions .js,.ts,.tsx react-build.ts dist/react-build.html src/App",
-    "build": "npm run react-build && webpack"
+    "build": "npm run react-build && webpack",
+    "build-serve-": "npm run react-build && npx webpack serve",
+    "build-serve": "nodemon -e js,jsx,ts,tsx,png,jpg,babelrc,json --watch src --watch . --exec 'npm run build-serve-'"
   },
   "devDependencies": {
     "@babel/core": "^7.17.6",
