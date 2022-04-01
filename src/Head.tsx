@@ -1,7 +1,10 @@
 import React from "react";
 
 export default function Head(props: {}) {
-  return <head>
+  return (
+    <head>
       <title>Robert Ostrosky</title>
-  </head>;
+      <style />
+    </head>
+  );
 }

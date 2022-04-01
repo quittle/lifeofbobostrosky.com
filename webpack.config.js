@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const entrypoint = "./dist/react-build.html";
 
 const config = {
+  mode: "development",
   entry: {
     index: [entrypoint],
   },
