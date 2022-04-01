@@ -7,7 +7,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export default function Main(props: {}) {
+export default function Main(_props: Record<string, never>) {
   const classes = useStyles();
   return (
     <div id="main">

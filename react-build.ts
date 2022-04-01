@@ -5,11 +5,9 @@ import process from "process";
 import path from "path";
 import { SheetsRegistry, JssProvider } from "react-jss";
 
-function main(args) {
+function main() {
+  const args = process.argv;
   const [_node, _script, outFile, appRoot] = args;
-
-  fs.rmSync(outFile, { force: true });
-  fs.mkdirSync(path.dirname(outFile), { recursive: true });
 
   const AppElement: any = require(path.join(__dirname, appRoot)).default;
 
@@ -30,7 +28,8 @@ function main(args) {
     "<style>" + sheets.toString() + "</style>"
   );
 
+  fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, styledHtml);
 }
 
-main(process.argv);
+main();
