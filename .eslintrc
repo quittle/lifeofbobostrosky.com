@@ -17,8 +17,12 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["webpack.*.js", "*.png"],
+  "ignorePatterns": ["webpack.*.js", "**/*.png", "**/*.jpg"],
   "rules": {
+    "max-statements": "off",
+    "one-var": "off",
+    "func-style": ["error", "declaration"],
+    "prefer-template": "off",
     "no-unused-vars": [
       "error",
       {

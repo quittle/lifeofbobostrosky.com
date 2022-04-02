@@ -1,35 +1,48 @@
-import ReactDOMServer from "react-dom/server";
+import { JssProvider, SheetsRegistry } from "react-jss";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
+
 import fs from "fs";
-import process from "process";
 import path from "path";
-import { SheetsRegistry, JssProvider } from "react-jss";
+import process from "process";
 
-function main() {
+function writeFileWithDirectory(filePath: string, contents: string): void {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, contents);
+}
+
+function main(): void {
   const args = process.argv;
-  const [_node, _script, outFile, appRoot] = args;
+  const [_node, _script, outHtmlFile, outCssFile, outJsFile, appRoot] = args;
 
-  const AppElement: any = require(path.join(__dirname, appRoot)).default;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const AppElement: React.ComponentClass<unknown, unknown> = require(path.join(
+    __dirname,
+    appRoot
+  )).default;
 
   const sheets = new SheetsRegistry();
 
   const appHtml = ReactDOMServer.renderToString(
+    // eslint-disable-next-line react/no-children-prop
     React.createElement(
       JssProvider,
       {
+        children: null,
         registry: sheets,
-        children: [],
       },
       React.createElement(AppElement)
     )
   );
-  const styledHtml = appHtml.replace(
-    "<style />",
-    "<style>" + sheets.toString() + "</style>"
-  );
 
-  fs.mkdirSync(path.dirname(outFile), { recursive: true });
-  fs.writeFileSync(outFile, styledHtml);
+  const css = sheets.toString();
+
+  writeFileWithDirectory(outHtmlFile, appHtml);
+
+  writeFileWithDirectory(outCssFile, css);
+
+  const relativeCssFile = path.relative(path.dirname(outJsFile), outCssFile);
+  writeFileWithDirectory(outJsFile, `import './${relativeCssFile}';`);
 }
 
 main();

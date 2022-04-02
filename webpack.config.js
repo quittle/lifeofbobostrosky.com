@@ -1,12 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-const entrypoint = "./dist/react-build.html";
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
   mode: "development",
   entry: {
-    index: [entrypoint],
+    index: ["./dist/react-build.js"],
   },
   output: {
     path: path.resolve(__dirname, "dist", "public"),
@@ -24,16 +23,29 @@ const config = {
         },
       },
       {
-        test: /\.(png)$/,
+        test: /\.(png|jpg)$/,
         type: "asset/resource",
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: entrypoint,
+      template: "./dist/react-build.html",
       filename: "[name].html",
     }),
+    new MiniCssExtractPlugin(),
   ],
 };
 
