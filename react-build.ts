@@ -16,7 +16,7 @@ function main(): void {
   const [_node, _script, outHtmlFile, outCssFile, outJsFile, appRoot] = args;
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const AppElement: React.ComponentClass<unknown, unknown> = require(path.join(
+  const AppElement: React.FunctionComponent = require(path.join(
     __dirname,
     appRoot
   )).default;
@@ -28,8 +28,8 @@ function main(): void {
     React.createElement(
       JssProvider,
       {
-        children: null,
         registry: sheets,
+        children: null,
       },
       React.createElement(AppElement)
     )

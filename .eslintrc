@@ -23,6 +23,8 @@
     "one-var": "off",
     "func-style": ["error", "declaration"],
     "prefer-template": "off",
+    "sort-keys": "off",
+    "no-magic-numbers": "off",
     "no-unused-vars": [
       "error",
       {
@@ -32,12 +34,14 @@
         "caughtErrorsIgnorePattern": "^_"
       }
     ],
+    "quotes": ["error", "double"],
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".jsx", ".tsx"] }
     ],
     "react/jsx-no-literals": "off",
     "react/require-default-props": "off",
+    "react/jsx-max-depth": ["error", { "max": 6 }],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -46,6 +50,7 @@
         "destructuredArrayIgnorePattern": "^_",
         "caughtErrorsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

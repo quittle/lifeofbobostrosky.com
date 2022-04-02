@@ -5,5 +5,5 @@ set -o pipefail
 
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
-npx nodemon -e js,jsx,ts,tsx,png,jpg,babelrc,json --watch src --watch . --exec 'npm run react-build; npm run lint-fix' &
-npx webpack serve
+npx nodemon -e js,jsx,ts,tsx,png,jpg,babelrc,json --watch src --watch . --ignore dist --exec 'npm run react-build; npm run lint-fix' &
+npx nodemon --watch webpack.config.js --expec 'npx webpack serve'
