@@ -35,6 +35,9 @@
       }
     ],
     "quotes": ["error", "double"],
+    "id-length": "off",
+    "no-undefined": "off",
+    "init-declarations": "off", // With TS, you can declare external variables, so you would not initialize
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".jsx", ".tsx"] }
