@@ -11,6 +11,7 @@ export default function Head(_props: Record<string, never>) {
         content="A dedication to the life of Robert Ostrosky. 1928–2022"
         name="description"
       />
+      <meta content="width=device-width, initial-scale=1" name="viewport" />
 
       <link href="https://fonts.googleapis.com" rel="preconnect" />
       <link

@@ -1,5 +1,10 @@
 import { JssContext, jss } from "react-jss";
-import { argyleBackground, headerFontFamily, lightText } from "./styles";
+import {
+  argyleBackground,
+  headerFontFamily,
+  lightText,
+  regularFontFamily,
+} from "./styles";
 
 import Head from "./Head";
 import { JssStyle } from "jss";
@@ -14,6 +19,7 @@ const headerCommon: JssStyle = {
 const inputCommon: JssStyle = {
   fontSize: "1em",
   padding: "0.5em",
+  ...regularFontFamily,
 };
 
 const styleSheet = jss.createStyleSheet({

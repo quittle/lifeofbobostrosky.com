@@ -37,6 +37,9 @@ const useStyles = createUseStyles({
     fontFamily: "'Send Flowers', cursive",
     fontSize: "2em",
     maxWidth: "60%",
+    "@media (max-width: 600px)": {
+      fontSize: "8vw",
+    },
   },
 });
 
