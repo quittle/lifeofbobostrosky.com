@@ -17,7 +17,7 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["webpack.*.js", "**/*.png", "**/*.jpg"],
+  "ignorePatterns": ["webpack.*.js", "**/*.png", "**/*.bmp", "**/*.jpg"],
   "rules": {
     "max-statements": "off",
     "one-var": "off",
@@ -38,6 +38,7 @@
     "id-length": "off",
     "no-undefined": "off",
     "init-declarations": "off", // With TS, you can declare external variables, so you would not initialize
+    "max-lines-per-function": ["error", { "max": 70 }],
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".jsx", ".tsx"] }

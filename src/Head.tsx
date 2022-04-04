@@ -7,6 +7,11 @@ export default function Head(_props: Record<string, never>) {
 
       <title>Robert Ostrosky</title>
 
+      <meta
+        content="A dedication to the life of Robert Ostrosky. 1928–2022"
+        name="description"
+      />
+
       <link href="https://fonts.googleapis.com" rel="preconnect" />
       <link
         crossOrigin="crossOrigin"

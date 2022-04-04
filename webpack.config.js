@@ -33,8 +33,8 @@ const config = {
         },
       },
       {
-        test: /\.(png|jpg)$/,
-        type: "asset/resource",
+        test: /\.(png|jpg|bmp)$/,
+        use: ["file-loader", "webpack-image-resize-loader"],
       },
       {
         test: /\.css$/,

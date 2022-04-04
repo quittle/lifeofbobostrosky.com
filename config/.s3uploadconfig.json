@@ -17,6 +17,9 @@
   "**/*.png": {
     "contentType": "image/png"
   },
+  "**/*.bmp": {
+    "contentType": "image/bmp"
+  },
   "**/*.svg": {
     "contentType": "image/svg+xml"
   },

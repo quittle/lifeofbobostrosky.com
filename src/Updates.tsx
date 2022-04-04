@@ -35,6 +35,14 @@ const useStyles = createUseStyles({
     width: "100%",
     height: "6em",
   },
+  recaptchaBlurb: {
+    fontSize: "0.70em",
+  },
+  "@global": {
+    ".grecaptcha-badge": {
+      visibility: "hidden",
+    },
+  },
 });
 
 export default function Updates(_props: Record<string, never>) {
@@ -79,6 +87,13 @@ export default function Updates(_props: Record<string, never>) {
         >
           Send
         </button>
+
+        <div className={classes.recaptchaBlurb}>
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
+          <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+          apply.
+        </div>
       </form>
     </section>
   );
