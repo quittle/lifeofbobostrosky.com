@@ -66,7 +66,14 @@ export default function Updates(_props: Record<string, never>) {
           name="message"
           placeholder="Message for the family..."
         />
-        <button type="submit">Send</button>
+
+        <button
+          className="g-recaptcha"
+          data-sitekey="6LcT-UEfAAAAALIl7NO1JPZvYuvVxDF6kyzYc1gH"
+          type="submit"
+        >
+          Send
+        </button>
       </form>
     </section>
   );
