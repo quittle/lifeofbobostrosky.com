@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     height: "95vh",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "end",
     alignItems: "center",
     textShadow: ["0 0 1em black", "0 0 1em black", "0 0 1em black"],
     position: "relative",
