@@ -3,7 +3,8 @@ import { checkRecaptchaResponse } from "./recaptcha";
 
 type ContactFormData = {
   name: string;
-  email: string;
+  email: string | null;
+  phone: string | null;
   message: string;
   gRecaptchaResponse: string | null;
 };
@@ -20,10 +21,11 @@ async function parseRequest(
 
   const name = response.get("name");
   const email = response.get("email");
+  const phone = response.get("phone");
   const message = response.get("message");
   const gRecaptchaResponse = response.get("g-recaptcha-response");
 
-  if (!(name && email && message)) {
+  if (!(name && (email || phone) && message)) {
     throw new Error("A required field was missing from the request");
   }
 
@@ -32,6 +34,7 @@ async function parseRequest(
   return {
     name,
     email,
+    phone,
     message,
     gRecaptchaResponse,
   };

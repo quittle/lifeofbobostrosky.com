@@ -37,7 +37,7 @@ function main(): void {
 
   const css = sheets.toString();
 
-  writeFileWithDirectory(outHtmlFile, appHtml);
+  writeFileWithDirectory(outHtmlFile, `<!DOCTYPE html> ${appHtml}`);
 
   writeFileWithDirectory(outCssFile, css);
 

@@ -3,6 +3,8 @@ import React from "react";
 export default function Head(_props: Record<string, never>) {
   return (
     <head>
+      <meta charSet="utf-8" />
+
       <title>Robert Ostrosky</title>
 
       <link href="https://fonts.googleapis.com" rel="preconnect" />

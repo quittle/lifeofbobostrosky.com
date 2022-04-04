@@ -48,6 +48,7 @@ const styleSheet = jss.createStyleSheet({
     },
     input: inputCommon,
     textarea: inputCommon,
+    button: inputCommon,
   },
 });
 
@@ -56,7 +57,7 @@ export default function App(_props: Record<string, never>) {
   jssContext!.registry!.add(styleSheet);
 
   return (
-    <html>
+    <html lang="en">
       <Head />
       <body>
         <Main />

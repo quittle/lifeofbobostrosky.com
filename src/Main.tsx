@@ -34,10 +34,10 @@ export default function Main(_props: Record<string, never>) {
   return (
     <main className={classes.main}>
       <h1 className={classes.h1}>Robert Ostrosky</h1>
-      <div className={classes.subHeader}>1928 &ndash; Present</div>
+      <div className={classes.subHeader}>1928 &ndash; 2022</div>
       <p className={classes.blurb}>
-        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-        consectetur, adipisci velit...
+        Beloved husband, father, and grandfather. You will be missed and forever
+        in our hearts.
       </p>
     </main>
   );
