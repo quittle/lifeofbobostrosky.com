@@ -8,7 +8,7 @@ export default function Head(_props: Record<string, never>) {
       <title>Robert Ostrosky</title>
 
       <meta
-        content="A dedication to the life of Robert Ostrosky. 1928–2022"
+        content="A dedication to the life of Robert Ostrosky. 1929–2022"
         name="description"
       />
       <meta content="width=device-width, initial-scale=1" name="viewport" />
