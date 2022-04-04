@@ -4,6 +4,7 @@ export default function Head(_props: Record<string, never>) {
   return (
     <head>
       <title>Robert Ostrosky</title>
+
       <link href="https://fonts.googleapis.com" rel="preconnect" />
       <link
         crossOrigin="crossOrigin"
@@ -14,6 +15,8 @@ export default function Head(_props: Record<string, never>) {
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Send+Flowers&display=swap"
         rel="stylesheet"
       />
+
+      <script async defer src="https://www.google.com/recaptcha/api.js" />
     </head>
   );
 }

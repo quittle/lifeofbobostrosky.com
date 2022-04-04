@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
   mode: "development",
@@ -46,6 +47,9 @@ const config = {
       filename: "[name].html",
     }),
     new MiniCssExtractPlugin(),
+    new CopyWebpackPlugin({
+      patterns: ["config/.s3uploadconfig.json"],
+    }),
   ],
 };
 

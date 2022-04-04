@@ -1,0 +1,220 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  DeploymentContentVersion:
+    Type: String
+    Description: This can be any unique string that identifies the files you are deploying.
+  DomainHostedZoneId:
+    Type: String
+    Description: The fixed hosted zone id that managed the domain lifeofbobostrosky.com in Route 53
+    Default: Z05716572FXAW59VPOGCT
+  StackNameSuffix:
+    Type: String
+    Default: ""
+  RootDomain:
+    Type: String
+    Default: "lifeofbobostrosky.com"
+  WwwDomain:
+    Type: String
+    Default: "www.lifeofbobostrosky.com"
+  ApiDomain:
+    Type: String
+    Default: "api.lifeofbobostrosky.com"
+
+Resources:
+  # Bucket
+  LifeOfBobOstroskyComBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Join ["", [lifeofbobostrosky.com, !Ref StackNameSuffix]]
+  LifeOfBobOstroskyComBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref LifeOfBobOstroskyComBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action:
+              - s3:GetObject
+              - s3:ListBucket
+            Effect: Allow
+            Resource:
+              - !Join ["", [!GetAtt LifeOfBobOstroskyComBucket.Arn, "/*"]]
+              - !GetAtt LifeOfBobOstroskyComBucket.Arn
+            Principal:
+              CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId
+
+  # Deployment
+  S3UploadLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: ../node_modules/s3-upload-custom-resource-lambda-layer/dist/layer.zip
+  S3UploadLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Layers: [!Ref S3UploadLambdaLayer]
+      CodeUri: "../dist/public"
+      Handler: s3-upload-custom-resource.handler
+      MemorySize: 10240
+      Timeout: 180
+      Runtime: nodejs14.x
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref LifeOfBobOstroskyComBucket
+  DeployWebsite:
+    Type: Custom::UploadFilesToS3
+    Properties:
+      ServiceToken: !GetAtt S3UploadLambda.Arn
+      BucketName: !Ref LifeOfBobOstroskyComBucket
+      ContentVersion: !Ref DeploymentContentVersion
+
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Domain:
+        CertificateArn: !Ref LifeOfBobOstroskyComCertificate
+        DomainName: !Ref ApiDomain
+        Route53:
+          HostedZoneId: !Ref DomainHostedZoneId
+
+  # Contact Lambda
+  ContactLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: "../dist-contact"
+      Handler: index.handler
+      FunctionName:
+        !Join ["", [LifeOfBobOstroskyContactLambda, !Ref StackNameSuffix]]
+      MemorySize: 128
+      Role: !GetAtt ContactLambdaRole.Arn
+      Runtime: nodejs14.x
+      Events:
+        HttpPost:
+          Type: Api
+          Properties:
+            Path: "/contact"
+            Method: post
+            RestApiId: !Ref Api
+  ContactLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Effect: Allow
+                Resource: !Sub
+                  - arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${lambdaFunctionName}:*
+                  - lambdaFunctionName:
+                      !Join [
+                        "",
+                        [LifeOfBobOstroskyContactLambda, !Ref StackNameSuffix],
+                      ]
+              - Action: ses:SendEmail
+                Effect: Allow
+                Resource: !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/lifeofbobostrosky.com
+          PolicyName: lambda
+  ContactLambdaLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub
+        - /aws/lambda/${lambdaFunctionName}
+        - lambdaFunctionName:
+            !Join ["", [LifeOfBobOstroskyContactLambda, !Ref StackNameSuffix]]
+      RetentionInDays: 90
+
+  # CloudFront
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !GetAtt LifeOfBobOstroskyComBucket.DomainName
+            Id: S3
+            S3OriginConfig:
+              OriginAccessIdentity:
+                !Join [
+                  "",
+                  [
+                    "origin-access-identity/cloudfront/",
+                    !Ref CloudFrontOriginAccessIdentity,
+                  ],
+                ]
+        Enabled: true
+        DefaultRootObject: "index.html"
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 404
+            ResponsePagePath: "/index.html"
+        Aliases:
+          - !Ref RootDomain
+          - !Ref WwwDomain
+        DefaultCacheBehavior:
+          TargetOriginId: S3
+          SmoothStreaming: false
+          Compress: true
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        HttpVersion: http2
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn: !Ref LifeOfBobOstroskyComCertificate
+          MinimumProtocolVersion: TLSv1.1_2016
+          SslSupportMethod: sni-only
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: lifeofbobostrosky.com
+
+  # Certificate
+  LifeOfBobOstroskyComCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: lifeofbobostrosky.com
+      SubjectAlternativeNames:
+        - "*.lifeofbobostrosky.com"
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: lifeofbobostrosky.com
+          HostedZoneId: !Ref DomainHostedZoneId
+
+  # Domain
+  LifeOfBobOstroskyComDomainName:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref DomainHostedZoneId
+      Name: !Ref RootDomain
+      Type: A
+      AliasTarget:
+        # Global CloudFront Hosted Zone per
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget-1.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
+  WwwLifeOfBobOstroskyComDomainName:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref DomainHostedZoneId
+      Name: !Ref WwwDomain
+      Type: A
+      AliasTarget:
+        # Global CloudFront Hosted Zone per
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget-1.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
