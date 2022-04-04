@@ -36,6 +36,7 @@ const useStyles = createUseStyles({
     height: "6em",
   },
 });
+
 export default function Updates(_props: Record<string, never>) {
   const classes = useStyles();
   return (
@@ -49,14 +50,16 @@ export default function Updates(_props: Record<string, never>) {
       <form
         action="https://api.lifeofbobostrosky.com/contact"
         className={classes.form}
+        id="contact-form"
         method="post"
+        target="_blank"
       >
-        <input name="name" placeholder="Name" type="text" />
+        <input name="name" placeholder="Name" required type="text" />
 
         <div className={classes.contact}>
           <div className={classes.startSymbol}>{"{"}</div>
           <div className={classes.contactContainer}>
-            <input name="email" placeholder="Email" type="email" />
+            <input name="email" placeholder="Email" required type="email" />
             <input name="phone" placeholder="Phone Number" type="tel" />
           </div>
         </div>
@@ -69,6 +72,8 @@ export default function Updates(_props: Record<string, never>) {
 
         <button
           className="g-recaptcha"
+          data-action="submit"
+          data-callback="onSubmit"
           data-sitekey="6LcT-UEfAAAAALIl7NO1JPZvYuvVxDF6kyzYc1gH"
           type="submit"
         >

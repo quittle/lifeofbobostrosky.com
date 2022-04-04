@@ -22,10 +22,10 @@ async function parseRequest(
   const name = response.get("name");
   const email = response.get("email");
   const phone = response.get("phone");
-  const message = response.get("message");
+  const message = response.get("message") ?? "No message submitted.";
   const gRecaptchaResponse = response.get("g-recaptcha-response");
 
-  if (!(name && (email || phone) && message)) {
+  if (!(name && (email || phone))) {
     throw new Error("A required field was missing from the request");
   }
 

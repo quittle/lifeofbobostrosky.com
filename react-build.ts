@@ -13,7 +13,15 @@ function writeFileWithDirectory(filePath: string, contents: string): void {
 
 function main(): void {
   const args = process.argv;
-  const [_node, _script, outHtmlFile, outCssFile, outJsFile, appRoot] = args;
+  const [
+    _node,
+    _script,
+    runtimeJsFile,
+    outHtmlFile,
+    outCssFile,
+    outJsFile,
+    appRoot,
+  ] = args;
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const AppElement: React.FunctionComponent = require(path.join(
@@ -42,7 +50,14 @@ function main(): void {
   writeFileWithDirectory(outCssFile, css);
 
   const relativeCssFile = path.relative(path.dirname(outJsFile), outCssFile);
-  writeFileWithDirectory(outJsFile, `import './${relativeCssFile}';`);
+  const relativeRuntimeJsFile = path.relative(
+    path.dirname(outJsFile),
+    runtimeJsFile
+  );
+  writeFileWithDirectory(
+    outJsFile,
+    `import './${relativeCssFile}'; import './${relativeRuntimeJsFile}';`
+  );
 }
 
 main();

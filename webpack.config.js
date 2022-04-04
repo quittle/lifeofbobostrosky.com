@@ -24,6 +24,15 @@ const config = {
         },
       },
       {
+        test: /\.(ts)$/,
+        use: {
+          loader: "ts-loader",
+          options: {
+            configFile: `${__dirname}/tsconfig.json`,
+          },
+        },
+      },
+      {
         test: /\.(png|jpg)$/,
         type: "asset/resource",
       },

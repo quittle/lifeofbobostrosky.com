@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "react-build": "babel-node --extensions .js,.ts,.tsx react-build.ts dist/react-build.html dist/react-build.css dist/react-build.js src/App",
+    "react-build": "babel-node --extensions .js,.ts,.tsx react-build.ts src/js/index.ts dist/react-build.html dist/react-build.css dist/react-build.js src/App",
     "eslint": "eslint 'src/**' 'lambda/**'",
     "eslint-fix": "eslint 'src/**' 'lambda/**' --fix",
     "prettier": "prettier --check .",
@@ -16,7 +16,7 @@
     "build-apis": "webpack --config config/webpack.api.js",
     "deploy": "./scripts/deploy",
     "build-and-test": "npm run build && npm run lint",
-    "release": "npm run build-prod && npm run build-apis && npm run deploy"
+    "release": "rm -rf ./dist && npm run build-prod && npm run build-apis && npm run deploy"
   },
   "devDependencies": {
     "@babel/core": "^7.17.6",

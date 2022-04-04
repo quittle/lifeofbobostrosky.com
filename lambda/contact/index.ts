@@ -27,7 +27,7 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
     await sendEmail({
       toAddress: "quittleland@gmail.com",
       fromAddress: "api+updates@lifeofbobostrosky.com",
-      replyToAddress: formData.email || "noreply@lifeofbobostrosky.com",
+      replyToAddress: "noreply@lifeofbobostrosky.com",
       subject: "Updates Form Submission - lifeofbobostrosky.com",
       body: `
             From: ${formData.name} <Email:${formData.email}> <Phone:${formData.phone}>
