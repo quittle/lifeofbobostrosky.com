@@ -10,7 +10,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, "dist", "public"),
-    filename: "[name].js",
+    filename: "[name]-[contenthash].js",
   },
   module: {
     rules: [
