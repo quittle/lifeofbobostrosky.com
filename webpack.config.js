@@ -55,7 +55,9 @@ const config = {
       template: "./dist/react-build.html",
       filename: "[name].html",
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "index-[contenthash].css",
+    }),
     new CopyWebpackPlugin({
       patterns: ["config/.s3uploadconfig.json"],
     }),

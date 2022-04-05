@@ -41,9 +41,6 @@ let config = merge(common, {
     liveReload: false,
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "index-[contenthash].css",
-    }),
     new PreloadWebpackPlugin({
       include: "all",
       as(entry) {
