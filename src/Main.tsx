@@ -29,6 +29,7 @@ const useStyles = createUseStyles({
     fontSize: "3em",
     textTransform: "uppercase",
     textAlign: "center",
+    padding: "0 1em",
   },
   subHeader: {
     fontSize: "2em",
