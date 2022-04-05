@@ -1,5 +1,5 @@
 {
-  "name": "bobostrosky.com",
+  "name": "lifeofbobostrosky.com",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -15,7 +15,7 @@
     "build-prod": "npm run react-build && webpack --config config/webpack.prod.js",
     "build-apis": "webpack --config config/webpack.api.js",
     "deploy": "./scripts/deploy",
-    "build-and-test": "npm run build && npm run lint",
+    "build-and-test": "npm run build && npm run build-prod && npm run build-apis && npm run lint",
     "release": "rm -rf ./dist && npm run build-prod && npm run build-apis && npm run deploy"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
     "@types/aws-lambda": "^8.10.93",
     "@types/aws-sdk": "^2.7.0",
     "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "@vue/preload-webpack-plugin": "^2.0.0",
@@ -53,8 +54,5 @@
     "webpack-dev-server": "^4.7.4",
     "webpack-image-resize-loader": "^5.0.0",
     "webpack-merge": "^5.8.0"
-  },
-  "dependencies": {
-    "@types/react-dom": "^17.0.14"
   }
 }

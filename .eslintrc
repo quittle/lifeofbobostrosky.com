@@ -39,6 +39,7 @@
     "no-undefined": "off",
     "init-declarations": "off", // With TS, you can declare external variables, so you would not initialize
     "max-lines-per-function": ["error", { "max": 70 }],
+    "dot-notation": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".jsx", ".tsx"] }

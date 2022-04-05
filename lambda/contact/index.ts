@@ -4,12 +4,23 @@ import {
   APIGatewayProxyResult,
 } from "aws-lambda";
 import { parseRequest } from "./request";
+import process from "process";
+import { saveToTable } from "./db";
 import { sendEmail } from "./email";
+
+function getDynamoDBTableName(): string {
+  return process.env["DYNAMO_DB_TABLE_NAME"] as string;
+}
 
 interface EventResult {
   statusCode: number;
   reason: string;
 }
+
+const ERROR_RESULT: Readonly<EventResult> = {
+  statusCode: 500,
+  reason: "Server Error. Try again later.",
+};
 
 async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
   let formData;
@@ -21,6 +32,14 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
       statusCode: 400,
       reason: (e as Error).message,
     };
+  }
+
+  try {
+    await saveToTable(getDynamoDBTableName(), formData);
+  } catch (e) {
+    console.error("Unable to save to table", e);
+
+    return ERROR_RESULT;
   }
 
   try {
@@ -39,10 +58,7 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
   } catch (e) {
     console.error("Unable to send email", e);
 
-    return {
-      statusCode: 500,
-      reason: "Server Error. Try again later.",
-    };
+    return ERROR_RESULT;
   }
 
   return {

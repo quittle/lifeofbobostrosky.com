@@ -68,6 +68,20 @@ Resources:
       BucketName: !Ref LifeOfBobOstroskyComBucket
       ContentVersion: !Ref DeploymentContentVersion
 
+  UpdatesTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
   Api:
     Type: AWS::Serverless::Api
     Properties:
@@ -89,6 +103,9 @@ Resources:
       MemorySize: 128
       Role: !GetAtt ContactLambdaRole.Arn
       Runtime: nodejs14.x
+      Environment:
+        Variables:
+          DYNAMO_DB_TABLE_NAME: !Ref UpdatesTable
       Events:
         HttpPost:
           Type: Api
@@ -126,6 +143,9 @@ Resources:
               - Action: ses:SendEmail
                 Effect: Allow
                 Resource: !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/lifeofbobostrosky.com
+              - Action: dynamodb:PutItem
+                Effect: Allow
+                Resource: !GetAtt UpdatesTable.Arn
           PolicyName: lambda
   ContactLambdaLogGroup:
     Type: AWS::Logs::LogGroup
