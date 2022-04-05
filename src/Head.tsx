@@ -24,7 +24,11 @@ export default function Head(_props: Record<string, never>) {
         rel="stylesheet"
       />
 
-      <script async defer src="https://www.google.com/recaptcha/api.js" />
+      <script
+        async
+        defer
+        src="https://www.google.com/recaptcha/api.js?render=6LcT-UEfAAAAALIl7NO1JPZvYuvVxDF6kyzYc1gH"
+      />
     </head>
   );
 }

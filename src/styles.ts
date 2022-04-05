@@ -4,6 +4,10 @@ export const lightText: JssStyle = {
   color: "#efefef",
 };
 
+export const darkText: JssStyle = {
+  color: "#333",
+};
+
 export const headerFontFamily: JssStyle = {
   fontFamily: "'Roboto Slab', helvetica, serif",
 };

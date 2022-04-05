@@ -1,6 +1,7 @@
 import { JssStyle } from "jss";
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { darkText } from "./styles";
 
 const formGap: JssStyle = {
   gap: "0.5em",
@@ -37,6 +38,24 @@ const useStyles = createUseStyles({
   },
   recaptchaBlurb: {
     fontSize: "0.70em",
+  },
+  submissionResult: {
+    padding: "0.5em",
+    fontSize: "1.5em",
+    border: "0.2em solid black",
+    ...darkText,
+    display: "none",
+    "&.success, &.error": {
+      display: "block",
+    },
+    "&.success": {
+      backgroundColor: "#b2ffb2",
+      borderColor: "#61ad61",
+    },
+    "&.error": {
+      backgroundColor: "#e4e47e",
+      borderColor: "#979708",
+    },
   },
   "@global": {
     ".grecaptcha-badge": {
@@ -78,15 +97,7 @@ export default function Updates(_props: Record<string, never>) {
           placeholder="Message for the family..."
         />
 
-        <button
-          className="g-recaptcha"
-          data-action="submit"
-          data-callback="onSubmit"
-          data-sitekey="6LcT-UEfAAAAALIl7NO1JPZvYuvVxDF6kyzYc1gH"
-          type="submit"
-        >
-          Send
-        </button>
+        <button type="submit">Send</button>
 
         <div className={classes.recaptchaBlurb}>
           This site is protected by reCAPTCHA and the Google{" "}
@@ -94,6 +105,12 @@ export default function Updates(_props: Record<string, never>) {
           <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
           apply.
         </div>
+
+        <div
+          className={classes.submissionResult}
+          id="submission-result"
+          tabIndex={0}
+        />
       </form>
     </section>
   );

@@ -39,6 +39,7 @@ const styleSheet = jss.createStyleSheet({
       margin: 0,
       overflowX: "clip",
       ...lightText,
+      ...regularFontFamily,
     },
     h1: headerCommon,
     h2: headerCommon,

@@ -56,7 +56,10 @@ function main(): void {
   );
   writeFileWithDirectory(
     outJsFile,
-    `import './${relativeCssFile}'; import './${relativeRuntimeJsFile}';`
+    `
+    import './${relativeCssFile}';
+    import './${relativeRuntimeJsFile}';
+    `
   );
 }
 

@@ -26,7 +26,7 @@ async function parseRequest(
   const gRecaptchaResponse = response.get("g-recaptcha-response");
 
   if (!(name && (email || phone))) {
-    throw new Error("A required field was missing from the request");
+    throw new Error("A required field was missing from the submission.");
   }
 
   await checkRecaptchaResponse(event, gRecaptchaResponse);
