@@ -57,7 +57,7 @@ export default function Main(_props: Record<string, never>) {
       <h1 className={classes.h1}>Robert Ostrosky</h1>
       <div className={classes.subHeader}>1929 &ndash; 2022</div>
       <p className={classes.blurb}>
-        Beloved husband, father, and grandfather. You will be missed and forever
+        Beloved husband, father, and grandfather. He will be missed and forever
         in our hearts.
       </p>
     </main>
