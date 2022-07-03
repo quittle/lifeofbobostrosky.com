@@ -101,8 +101,21 @@ export default function Updates(_props: Record<string, never>) {
 
         <div className={classes.recaptchaBlurb}>
           This site is protected by reCAPTCHA and the Google{" "}
-          <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
-          <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://policies.google.com/terms"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Terms of Service
+          </a>{" "}
           apply.
         </div>
 
