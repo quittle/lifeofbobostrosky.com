@@ -1,4 +1,4 @@
-# 🪦 Life of Robert Ostrosky
+# 🪦 Life of Robert Ostrosky [![Deployment Badge](https://github.com/quittle/lifeofbobostrosky.com/actions/workflows/node.yml/badge.svg)](https://github.com/quittle/lifeofbobostrosky.com/actions/workflows/node.yml)
 
 A site dedicating to honoring life and memory of Robert Ostrosky.
 
@@ -19,4 +19,4 @@ $ npm run build-and-test
 
 ## Deployment
 
-Not set up yet.
+This website is deployed to AWS as a static S3 site fronted by CloudFront using GitHub actions on every push.
