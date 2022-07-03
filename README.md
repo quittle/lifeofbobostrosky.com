@@ -1,6 +1,6 @@
 # 🪦 Life of Robert Ostrosky
 
-A site dedicating to honoring life and memories of Robert Ostrosky.
+A site dedicating to honoring life and memory of Robert Ostrosky.
 
 ## Build
 
