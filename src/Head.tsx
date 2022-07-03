@@ -3,6 +3,20 @@ import React from "react";
 export default function Head(_props: Record<string, never>) {
   return (
     <head>
+      <script
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-TRF0NF58R2');
+          `,
+        }}
+      />
       <meta charSet="utf-8" />
 
       <title>Robert Ostrosky</title>
@@ -22,6 +36,11 @@ export default function Head(_props: Record<string, never>) {
       <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Send+Flowers&display=swap"
         rel="stylesheet"
+      />
+
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-TRF0NF58R2"
       />
 
       <script
