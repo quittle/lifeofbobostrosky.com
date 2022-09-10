@@ -1,0 +1,42 @@
+import { Breakpoints } from "./styles";
+import Main from "./Main";
+import Nav from "./Nav";
+import React from "react";
+import Updates from "./Updates";
+import { createUseStyles } from "react-jss";
+
+const useStyles = createUseStyles({
+  wrapper: {
+    display: "flex",
+    height: "100%",
+    [`@media (max-width: ${Breakpoints.MEDIUM})`]: {
+      flexDirection: "column",
+    },
+  },
+  main: {
+    flexGrow: 1,
+    overflowY: "scroll",
+    scrollBehavior: "smooth",
+  },
+});
+
+export default function Body(_props: Record<string, never>) {
+  const styles = useStyles();
+
+  return (
+    <body>
+      <div className={styles.wrapper}>
+        <Nav
+          entries={[
+            { link: "#home", label: "Home" },
+            { link: "#updates", label: "Updates" },
+          ]}
+        />
+        <main className={styles.main}>
+          <Main />
+          <Updates />
+        </main>
+      </div>
+    </body>
+  );
+}

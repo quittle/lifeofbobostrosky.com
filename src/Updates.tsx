@@ -67,7 +67,7 @@ const useStyles = createUseStyles({
 export default function Updates(_props: Record<string, never>) {
   const classes = useStyles();
   return (
-    <section>
+    <section id="updates">
       <h2>Updates</h2>
       <p>
         We will update this site as arrangements are made. If you would like us

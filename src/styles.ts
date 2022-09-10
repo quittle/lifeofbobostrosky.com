@@ -1,11 +1,12 @@
 import { JssStyle } from "jss";
+import colors from "./colors";
 
 export const lightText: JssStyle = {
-  color: "#efefef",
+  color: colors.lightGrey,
 };
 
 export const darkText: JssStyle = {
-  color: "#333",
+  color: colors.darkGrey,
 };
 
 export const headerFontFamily: JssStyle = {
@@ -52,3 +53,7 @@ export const argyleBackground: JssStyle = (() => {
     backgroundSize: `${argyleSize / Math.sqrt(3)}px ${argyleSize}px`,
   };
 })();
+
+export const Breakpoints = {
+  MEDIUM: "600px",
+} as const;

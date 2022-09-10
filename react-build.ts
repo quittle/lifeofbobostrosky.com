@@ -31,7 +31,7 @@ function main(): void {
 
   const sheets = new SheetsRegistry();
 
-  const appHtml = ReactDOMServer.renderToString(
+  const appHtml = ReactDOMServer.renderToStaticMarkup(
     // eslint-disable-next-line react/no-children-prop
     React.createElement(
       JssProvider,

@@ -6,11 +6,10 @@ import {
   regularFontFamily,
 } from "./styles";
 
+import Body from "./Body";
 import Head from "./Head";
 import { JssStyle } from "jss";
-import Main from "./Main";
 import React from "react";
-import Updates from "./Updates";
 
 const headerCommon: JssStyle = {
   ...headerFontFamily,
@@ -66,10 +65,7 @@ export default function App(_props: Record<string, never>) {
   return (
     <html lang="en">
       <Head />
-      <body>
-        <Main />
-        <Updates />
-      </body>
+      <Body />
     </html>
   );
 }

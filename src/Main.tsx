@@ -1,10 +1,10 @@
+import { Breakpoints } from "./styles";
 import Picture from "./Picture";
 import React from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   main: {
-    width: "100vw",
     height: "95vh",
     display: "flex",
     flexDirection: "column",
@@ -13,6 +13,9 @@ const useStyles = createUseStyles({
     textShadow: ["0 0 1em black", "0 0 1em black", "0 0 1em black"],
     position: "relative",
     boxShadow: "0 0px 1em 0px black",
+    [`@media (max-width: ${Breakpoints.MEDIUM})`]: {
+      height: "calc(95vh - 3em)",
+    },
   },
   heroImg: {
     position: "absolute",
@@ -23,33 +26,31 @@ const useStyles = createUseStyles({
     objectFit: "cover",
     objectPosition: "center 23%",
     zIndex: -1,
+    // Roughly matches the grey of the background of the image
     background: "#e0d6cf",
   },
   h1: {
-    fontSize: "3em",
+    fontSize: "6vmax",
     textTransform: "uppercase",
     textAlign: "center",
     padding: "0 1em",
   },
   subHeader: {
-    fontSize: "2em",
+    fontSize: "4vmax",
   },
   blurb: {
     fontFamily: "'Send Flowers', cursive",
-    fontSize: "2em",
+    fontSize: "min(4vmax, 2em)",
     maxWidth: "60%",
-    "@media (max-width: 600px)": {
-      fontSize: "8vw",
-    },
   },
 });
 
 export default function Main(_props: Record<string, never>) {
   const classes = useStyles();
   return (
-    <main className={classes.main}>
+    <div className={classes.main} id="home">
       <Picture
-        alt="Robert Ostrosky in February-1967"
+        alt="Robert Ostrosky in February 1967"
         classes={classes.heroImg}
         src="/src/images/pa-february-1967-1300.png"
         widths={[400, 600, 800, 1000]}
@@ -60,6 +61,6 @@ export default function Main(_props: Record<string, never>) {
         Beloved husband, father, and grandfather. He will be missed and forever
         in our hearts.
       </p>
-    </main>
+    </div>
   );
 }

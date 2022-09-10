@@ -17,7 +17,13 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["webpack.*.js", "**/*.png", "**/*.bmp", "**/*.jpg"],
+  "ignorePatterns": [
+    "webpack.*.js",
+    "**/*.png",
+    "**/*.bmp",
+    "**/*.jpg",
+    "**/*.svg"
+  ],
   "rules": {
     "max-statements": "off",
     "one-var": "off",
@@ -25,6 +31,7 @@
     "prefer-template": "off",
     "sort-keys": "off",
     "no-magic-numbers": "off",
+    "no-ternary": "off",
     "no-unused-vars": [
       "error",
       {

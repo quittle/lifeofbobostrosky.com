@@ -1,8 +1,65 @@
+import { createFocusTrap } from "focus-trap";
+
+function getMenuButton(): HTMLInputElement {
+  return document.getElementById("menu-button") as HTMLInputElement;
+}
+
+function initNav() {
+  const focusTrap = createFocusTrap("nav");
+
+  const menuButton = getMenuButton();
+  function setMenuButtonChecked(checked: boolean) {
+    menuButton.checked = checked;
+    menuButton.dispatchEvent(new Event("change"));
+  }
+
+  function updateMenuButton() {
+    if (menuButton.checked) {
+      focusTrap.activate();
+      menuButton.title = "Close Navigation Menu";
+    } else {
+      focusTrap.deactivate();
+      menuButton.title = "Open Navigation Menu";
+    }
+  }
+  updateMenuButton();
+  menuButton.addEventListener("change", updateMenuButton);
+  menuButton.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      setMenuButtonChecked(!menuButton.checked);
+    }
+  });
+
+  /*
+   * Uncheck the menu button (which also deactivates the focus trap) if the menu disappears. This
+   * will happen if the user resizes the window or rotates a mobile device screen.
+   */
+  new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio === 0) {
+          setMenuButtonChecked(false);
+        }
+      });
+    },
+    {
+      root: document.documentElement,
+    }
+  ).observe(menuButton);
+
+  const navItems = document.querySelectorAll<HTMLAnchorElement>("nav a");
+  for (const item of navItems) {
+    item.addEventListener("click", () => {
+      setMenuButtonChecked(false);
+    });
+  }
+}
+
 function getContactForm(): HTMLFormElement {
   return document.getElementById("contact-form") as HTMLFormElement;
 }
 
-function init() {
+function initContactForm() {
   const contactForm = getContactForm();
   contactForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
@@ -62,6 +119,11 @@ function init() {
       resultDiv.focus();
     });
   });
+}
+
+function init() {
+  initNav();
+  initContactForm();
 }
 
 init();
