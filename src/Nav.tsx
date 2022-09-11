@@ -44,11 +44,11 @@ const useStyles = createUseStyles({
     },
     "& li": {
       display: "block",
+      borderBottom: `0.3em solid ${colors.darkGrey}`,
       "& a": {
         display: "block",
         color: "#fff",
         padding: "1em",
-        borderBottom: `0.3em solid ${colors.darkGrey}`,
         boxSizing: "border-box",
         width: "100%",
         background: `linear-gradient(to right, ${colors.black}, ${colors.lightBlue})`,

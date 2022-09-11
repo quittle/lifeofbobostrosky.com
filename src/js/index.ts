@@ -5,7 +5,10 @@ function getMenuButton(): HTMLInputElement {
 }
 
 function initNav() {
-  const focusTrap = createFocusTrap("nav");
+  const focusTrap = createFocusTrap("nav", {
+    escapeDeactivates: false,
+    returnFocusOnDeactivate: false,
+  });
 
   const menuButton = getMenuButton();
   function setMenuButtonChecked(checked: boolean) {
