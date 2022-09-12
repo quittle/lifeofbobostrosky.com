@@ -9,6 +9,7 @@ export async function saveToTable(
     name: string;
     email: string | null;
     phone: string | null;
+    address: string | null;
     message: string;
   }
 ): Promise<void> {
@@ -26,6 +27,9 @@ export async function saveToTable(
       },
       phone: {
         S: args.phone ?? "",
+      },
+      address: {
+        S: args.address ?? "",
       },
       message: {
         S: args.message,

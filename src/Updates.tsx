@@ -18,20 +18,6 @@ const useStyles = createUseStyles({
       width: "100%",
     },
   },
-  contact: {
-    display: "flex",
-    width: "100%",
-    ...formGap,
-  },
-  startSymbol: {
-    fontSize: "4em",
-  },
-  contactContainer: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    ...formGap,
-  },
   textarea: {
     width: "100%",
     height: "6em",
@@ -82,14 +68,9 @@ export default function Updates(_props: Record<string, never>) {
         target="_blank"
       >
         <input name="name" placeholder="Name" required type="text" />
-
-        <div className={classes.contact}>
-          <div className={classes.startSymbol}>{"{"}</div>
-          <div className={classes.contactContainer}>
-            <input name="email" placeholder="Email" required type="email" />
-            <input name="phone" placeholder="Phone Number" type="tel" />
-          </div>
-        </div>
+        <input name="email" placeholder="Email" required type="email" />
+        <input name="phone" placeholder="Phone Number (Optional)" type="tel" />
+        <input name="address" placeholder="Address (Optional)" type="text" />
 
         <textarea
           className={classes.textarea}

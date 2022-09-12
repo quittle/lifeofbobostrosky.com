@@ -5,6 +5,7 @@ type ContactFormData = {
   name: string;
   email: string | null;
   phone: string | null;
+  address: string | null;
   message: string;
   gRecaptchaResponse: string | null;
 };
@@ -22,6 +23,7 @@ async function parseRequest(
   const name = response.get("name");
   const email = response.get("email");
   const phone = response.get("phone");
+  const address = response.get("address");
   const message = response.get("message") ?? "No message submitted.";
   const gRecaptchaResponse = response.get("g-recaptcha-response");
 
@@ -35,6 +37,7 @@ async function parseRequest(
     name,
     email,
     phone,
+    address,
     message,
     gRecaptchaResponse,
   };

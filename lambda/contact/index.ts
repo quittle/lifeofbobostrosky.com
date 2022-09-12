@@ -49,7 +49,7 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
       replyToAddress: "noreply@lifeofbobostrosky.com",
       subject: "Updates Form Submission - lifeofbobostrosky.com",
       body: `
-            From: ${formData.name} <Email:${formData.email}> <Phone:${formData.phone}>
+            From: ${formData.name} <Email:${formData.email}> <Phone:${formData.phone}> <Address:${formData.address}>
             Message >>>
             ${formData.message}
             <<<<<<<<<<<
