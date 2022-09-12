@@ -5,11 +5,11 @@ import {
   lightText,
   regularFontFamily,
 } from "./styles";
-
 import Body from "./Body";
 import Head from "./Head";
 import { JssStyle } from "jss";
 import React from "react";
+import colors from "./colors";
 
 const headerCommon: JssStyle = {
   ...headerFontFamily,
@@ -55,6 +55,12 @@ const styleSheet = jss.createStyleSheet({
     input: inputCommon,
     textarea: inputCommon,
     button: inputCommon,
+    a: {
+      color: colors.veryLightBlue,
+      "&:visited": {
+        color: colors.veryLightPurple,
+      },
+    },
   },
 });
 

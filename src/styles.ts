@@ -55,5 +55,6 @@ export const argyleBackground: JssStyle = (() => {
 })();
 
 export const Breakpoints = {
+  SMALL: "400px",
   MEDIUM: "600px",
 } as const;

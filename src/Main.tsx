@@ -29,6 +29,9 @@ const useStyles = createUseStyles({
     zIndex: -1,
     // Roughly matches the grey of the background of the image
     background: "#e0d6cf",
+    [`@media (max-width: ${Breakpoints.SMALL})`]: {
+      objectFit: "cover",
+    },
   },
   h1: {
     fontSize: "6vh",
