@@ -29,7 +29,9 @@ const useStyles = createUseStyles({
     zIndex: -1,
     // Roughly matches the grey of the background of the image
     background: "#e0d6cf",
-    [`@media (max-width: ${Breakpoints.SMALL})`]: {
+    [`@media
+        (max-aspect-ratio: 443/742),
+        (max-aspect-ratio: 618/680) and (min-width: ${Breakpoints.MEDIUM})`]: {
       objectFit: "cover",
     },
   },
