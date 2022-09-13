@@ -1,6 +1,7 @@
 import { Breakpoints } from "./styles";
 import Main from "./Main";
 import Nav from "./Nav";
+import Plans from "./Plans";
 import React from "react";
 import Updates from "./Updates";
 import { createUseStyles } from "react-jss";
@@ -30,11 +31,13 @@ export default function Body(_props: Record<string, never>) {
           entries={[
             { link: "#home", label: "Home" },
             { link: "#updates", label: "Updates" },
+            { link: "#plans", label: "Plans" },
           ]}
         />
         <main className={styles.main}>
           <Main />
           <Updates />
+          <Plans />
         </main>
       </div>
     </body>

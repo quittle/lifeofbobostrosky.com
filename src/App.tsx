@@ -46,8 +46,11 @@ const styleSheet = jss.createStyleSheet({
     h4: headerCommon,
     h5: headerCommon,
     h6: headerCommon,
-    section: {
+    main: {
       ...argyleBackground,
+      zIndex: 0,
+    },
+    section: {
       display: "inline-block",
       width: "100%",
       padding: "1em",

@@ -32,6 +32,7 @@
     "sort-keys": "off",
     "no-magic-numbers": "off",
     "no-ternary": "off",
+    "no-underscore-dangle": "off",
     "no-unused-vars": [
       "error",
       {
