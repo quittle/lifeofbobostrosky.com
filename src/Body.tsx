@@ -1,5 +1,5 @@
 import { Breakpoints } from "./styles";
-import Main from "./Main";
+import Hero from "./Hero";
 import Nav from "./Nav";
 import Plans from "./Plans";
 import React from "react";
@@ -35,7 +35,7 @@ export default function Body(_props: Record<string, never>) {
           ]}
         />
         <main className={styles.main}>
-          <Main />
+          <Hero />
           <Updates />
           <Plans />
         </main>

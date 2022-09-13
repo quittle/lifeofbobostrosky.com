@@ -4,7 +4,7 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  main: {
+  heroWrapper: {
     height: "95vh",
     display: "flex",
     flexDirection: "column",
@@ -46,10 +46,10 @@ const useStyles = createUseStyles({
   },
 });
 
-export default function Main(_props: Record<string, never>) {
+export default function Hero(_props: Record<string, never>) {
   const classes = useStyles();
   return (
-    <div className={classes.main} id="home">
+    <div className={classes.heroWrapper} id="home">
       <Picture
         alt="Robert Ostrosky in February 1967"
         classes={classes.heroImg}
