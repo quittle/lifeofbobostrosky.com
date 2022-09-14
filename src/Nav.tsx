@@ -26,6 +26,8 @@ const useStyles = createUseStyles({
     "& ul": {
       padding: 0,
       margin: 0,
+      height: "100%",
+      overflow: "auto",
     },
     [`@media (max-width: ${Breakpoints.MEDIUM})`]: {
       textAlign: "right",
