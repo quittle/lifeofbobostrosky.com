@@ -52,6 +52,19 @@ const useStyles = createUseStyles({
         display: "flex",
         flexDirection: "column",
         scrollSnapAlign: "start",
+        cursor: "pointer",
+        "&.focused": {
+          position: "absolute",
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          borderRadius: 0,
+          "& img": {
+            objectFit: "contain",
+            height: "75%",
+          },
+        },
       },
       "& img": {
         height: "50%",
@@ -74,6 +87,9 @@ const useStyles = createUseStyles({
     padding: `${paddingEm / 2}em ${paddingEm}em ${paddingEm}em`,
     flexGrow: 1,
     overflow: "hidden",
+    ".focused &": {
+      borderRadius: 0,
+    },
   },
   description: {
     overflow: "auto",
@@ -107,12 +123,12 @@ export default function Gallery() {
             <img alt="" src={entry.imgPath} />
             <div className={styles.details}>
               <div className={styles.description}>{entry.description}</div>
-              <div className={styles.locationDate}>
+              <small className={styles.locationDate}>
                 {entry.location ?? <div>{entry.location}</div>}
                 <time dateTime={entry.date.toUTCString()}>
                   {entry.date.toLocaleDateString()}
                 </time>
-              </div>
+              </small>
             </div>
           </li>
         ))}

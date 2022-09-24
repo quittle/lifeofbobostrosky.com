@@ -41,8 +41,8 @@ export default function Body(_props: Record<string, never>) {
         <main className={styles.main}>
           <Hero />
           <Updates />
-          <Gallery />
           <Obituary />
+          <Gallery />
           <Plans />
         </main>
       </div>

@@ -1,4 +1,5 @@
 import { createFocusTrap } from "focus-trap";
+import { initGallery } from "./gallery";
 
 function getMenuButton(): HTMLInputElement {
   return document.getElementById("menu-button") as HTMLInputElement;
@@ -56,36 +57,6 @@ function initNav() {
       setMenuButtonChecked(false);
     });
   }
-}
-
-function getGalleryList(): HTMLOListElement {
-  return document.querySelector("#gallery ul") as HTMLOListElement;
-}
-
-function getGalleryNavButtons(): [HTMLButtonElement, HTMLButtonElement] {
-  return [
-    document.getElementById("gallery-prev") as HTMLButtonElement,
-    document.getElementById("gallery-next") as HTMLButtonElement,
-  ];
-}
-
-function initGallery() {
-  const galleryList = getGalleryList();
-  const firstElement = galleryList.querySelector("li");
-  const elementWidth = firstElement?.getBoundingClientRect().width;
-  const [prevButton, nextButton] = getGalleryNavButtons();
-  prevButton.addEventListener("click", () => {
-    galleryList.scrollBy({
-      left: -(elementWidth ?? 100),
-      behavior: "smooth",
-    });
-  });
-  nextButton.addEventListener("click", () => {
-    galleryList.scrollBy({
-      left: elementWidth ?? 100,
-      behavior: "smooth",
-    });
-  });
 }
 
 function getContactForm(): HTMLFormElement {

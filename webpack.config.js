@@ -54,6 +54,9 @@ const config = {
       },
     ],
   },
+  resolve: {
+    extensions: [".css", ".js", ".ts"],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./dist/react-build.html",
