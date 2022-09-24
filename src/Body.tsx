@@ -1,4 +1,5 @@
 import { Breakpoints } from "./styles";
+import Gallery from "./gallery/Gallery";
 import Hero from "./Hero";
 import Nav from "./Nav";
 import Obituary from "./Obituary";
@@ -33,12 +34,14 @@ export default function Body(_props: Record<string, never>) {
             { link: "#home", label: "Home" },
             { link: "#updates", label: "Updates" },
             { link: "#obituary", label: "Obituary" },
+            { link: "#gallery", label: "Gallery" },
             { link: "#plans", label: "Plans" },
           ]}
         />
         <main className={styles.main}>
           <Hero />
           <Updates />
+          <Gallery />
           <Obituary />
           <Plans />
         </main>

@@ -9,6 +9,8 @@ export const darkText: JssStyle = {
   color: colors.darkGrey,
 };
 
+export const secondaryBackground = colors.lightBlue;
+
 export const headerFontFamily: JssStyle = {
   fontFamily: "'Roboto Slab', helvetica, serif",
 };

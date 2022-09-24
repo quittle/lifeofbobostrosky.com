@@ -33,11 +33,11 @@ const config = {
         },
       },
       {
-        test: /\.(svg)$/,
+        test: /\.(svg)$/i,
         use: ["file-loader"],
       },
       {
-        test: /\.(png|jpg|bmp)$/,
+        test: /\.(png|jpg|bmp)$/i,
         use: ["file-loader", "webpack-image-resize-loader"],
       },
       {
