@@ -1,6 +1,32 @@
 import { createFocusTrap } from "focus-trap";
 import { initGallery } from "./gallery";
 
+function initScroll() {
+  function onLoad() {
+    const main = document.querySelector("main");
+    if (main?.scrollTop !== 0) {
+      return;
+    }
+
+    const fragment = location.hash;
+    if (!fragment) {
+      return;
+    }
+
+    const fragmentId = fragment.substring(1);
+    if (!fragmentId) {
+      return;
+    }
+
+    const element = document.getElementById(fragmentId);
+    if (!element) {
+      return;
+    }
+    element.scrollIntoView();
+  }
+  window.addEventListener("load", onLoad);
+}
+
 function getMenuButton(): HTMLInputElement {
   return document.getElementById("menu-button") as HTMLInputElement;
 }
@@ -126,6 +152,7 @@ function initContactForm() {
 }
 
 function init() {
+  initScroll();
   initNav();
   initContactForm();
   initGallery();

@@ -23,7 +23,6 @@ const galleryItemCommon: JssStyle = {
   borderRadius: "100%",
   outline: "0 solid black",
   transition: "outline 100ms ease-in-out",
-  transform: "translate(-50%, -50%)",
   "&:hover, &:active, &:focus": {
     opacity: 1,
     outlineWidth: "0.1em",
@@ -60,6 +59,16 @@ const useStyles = createUseStyles({
           right: 0,
           bottom: 0,
           borderRadius: 0,
+          "&::after": {
+            content: "''",
+            background: "url(/src/images/icon-close.svg) center no-repeat",
+            filter: "invert(1)",
+            width: "3em",
+            height: "3em",
+            position: "absolute",
+            top: 0,
+            right: 0,
+          },
           "& img": {
             objectFit: "contain",
             height: "75%",
@@ -78,6 +87,7 @@ const useStyles = createUseStyles({
     height: "100%",
   },
   details: {
+    cursor: "initial",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -103,10 +113,12 @@ const useStyles = createUseStyles({
   },
   galleryPrev: {
     ...galleryItemCommon,
+    transform: "translate(-50%, -50%)",
     left: "1em",
   },
   galleryNext: {
     ...galleryItemCommon,
+    transform: "translate(50%, -50%)",
     right: "1em",
   },
 });

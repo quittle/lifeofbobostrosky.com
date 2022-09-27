@@ -38,13 +38,22 @@ export function initGallery() {
   const allEntries = galleryList.querySelectorAll("li");
 
   allEntries.forEach((entry) => {
-    entry.addEventListener("click", () => {
-      if (isElementFocused(entry)) {
-        clearFocus();
-      } else {
-        focusEntry(entry);
-      }
-    });
+    [entry, entry.querySelector("img")].forEach((element) =>
+      element?.addEventListener("click", (e) => {
+        if (
+          !(e.target instanceof HTMLImageElement) &&
+          !(e.target instanceof HTMLLIElement)
+        ) {
+          return;
+        }
+        e.cancelBubble = true;
+        if (isElementFocused(entry)) {
+          clearFocus();
+        } else {
+          focusEntry(entry);
+        }
+      })
+    );
   });
 
   const elementWidth = allEntries[0].getBoundingClientRect().width;
