@@ -52,6 +52,8 @@ const useStyles = createUseStyles({
         flexDirection: "column",
         scrollSnapAlign: "start",
         cursor: "pointer",
+        maxWidth: "80vw",
+        objectFit: "cover",
         "&.focused": {
           position: "absolute",
           left: 0,
@@ -59,6 +61,7 @@ const useStyles = createUseStyles({
           right: 0,
           bottom: 0,
           borderRadius: 0,
+          maxWidth: "initial",
           "&::after": {
             content: "''",
             background: "url(/src/images/icon-close.svg) center no-repeat",
