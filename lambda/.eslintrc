@@ -1,5 +1,12 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "require-await": "off",
+    "line-comment-position": "off"
   }
 }

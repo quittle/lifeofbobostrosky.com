@@ -1,5 +1,6 @@
 import { JssStyle } from "jss";
 import React from "react";
+import Recaptcha from "./Recaptcha";
 import { createUseStyles } from "react-jss";
 import { darkText } from "./styles";
 
@@ -22,9 +23,6 @@ const useStyles = createUseStyles({
     width: "100%",
     height: "6em",
   },
-  recaptchaBlurb: {
-    fontSize: "0.70em",
-  },
   submissionResult: {
     padding: "0.5em",
     fontSize: "1.5em",
@@ -41,11 +39,6 @@ const useStyles = createUseStyles({
     "&.error": {
       backgroundColor: "#e4e47e",
       borderColor: "#979708",
-    },
-  },
-  "@global": {
-    ".grecaptcha-badge": {
-      visibility: "hidden",
     },
   },
 });
@@ -80,25 +73,7 @@ export default function Updates(_props: Record<string, never>) {
 
         <button type="submit">Send</button>
 
-        <div className={classes.recaptchaBlurb}>
-          This site is protected by reCAPTCHA and the Google{" "}
-          <a
-            href="https://policies.google.com/privacy"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Privacy Policy
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://policies.google.com/terms"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Terms of Service
-          </a>{" "}
-          apply.
-        </div>
+        <Recaptcha />
 
         <div
           className={classes.submissionResult}

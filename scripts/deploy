@@ -4,6 +4,23 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 export AWS_DEFAULT_REGION=us-east-1
 
+# Optional argument that appends a stack name suffix, usually "test" if passed at all
+readonly stack_name_suffix=$1
+
+stack_name="lifeofbobostrosky-com"
+extra_args=()
+if [ -n "$stack_name_suffix" ]; then
+    stack_name="${stack_name}-${stack_name_suffix}"
+    readonly root_domain="${stack_name_suffix}.lifeofbobostrosky.com"
+    readonly www_domain="www-${root_domain}"
+    readonly api_domain="api-${root_domain}"
+    extra_args=( \
+        "RootDomain=${root_domain}" \
+        "WwwDomain=${www_domain}" \
+        "ApiDomain=${api_domain}" \
+    )
+fi
+
 generated_template="/tmp/lifeofbobostrosky.com-generated-cloudformation.yml"
 
 aws cloudformation package \
@@ -16,8 +33,10 @@ code_uri="$(jq '.Resources.S3UploadLambda.Properties.CodeUri' "${generated_templ
 
 aws cloudformation deploy \
     --template-file "${generated_template}" \
-    --stack-name "lifeofbobostrosky-com" \
+    --stack-name "${stack_name}" \
     --capabilities CAPABILITY_IAM \
     --no-fail-on-empty-changeset \
     --parameter-overrides \
-    "DeploymentContentVersion=${code_uri}"
+    "DeploymentContentVersion=${code_uri}" \
+    "StackNameSuffix=${stack_name_suffix}" \
+    "${extra_args[@]}"

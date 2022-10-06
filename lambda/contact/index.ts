@@ -1,31 +1,15 @@
-import {
-  APIGatewayProxyEvent,
-  APIGatewayProxyHandler,
-  APIGatewayProxyResult,
-} from "aws-lambda";
-import { parseRequest } from "./request";
-import process from "process";
+import { ContactFormData, handleRequest } from "./request";
+import { ERROR_RESULT, EventResult } from "../common";
+import { APIGatewayProxyEvent } from "aws-lambda";
 import { saveToTable } from "./db";
-import { sendEmail } from "./email";
+import { sendEmail } from "../common/email";
 
-function getDynamoDBTableName(): string {
-  return process.env["DYNAMO_DB_TABLE_NAME"] as string;
-}
-
-interface EventResult {
-  statusCode: number;
-  reason: string;
-}
-
-const ERROR_RESULT: Readonly<EventResult> = {
-  statusCode: 500,
-  reason: "Server Error. Try again later.",
-};
-
-async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
-  let formData;
+export async function processEvent(
+  event: APIGatewayProxyEvent
+): Promise<EventResult> {
+  let formData: ContactFormData;
   try {
-    formData = await parseRequest(event);
+    formData = await handleRequest(event);
   } catch (e) {
     console.warn("Unable to parse request", e);
     return {
@@ -35,7 +19,7 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
   }
 
   try {
-    await saveToTable(getDynamoDBTableName(), formData);
+    await saveToTable(formData);
   } catch (e) {
     console.error("Unable to save to table", e);
 
@@ -66,32 +50,3 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
     reason: "Submitted Successfully.",
   };
 }
-
-/**
- * Using a variable for this to get type safety that this is a well defined
- * method that matches the expected Lambda format.
- */
-// eslint-disable-next-line func-style
-const handler: APIGatewayProxyHandler = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-  console.log("Request Event", event);
-
-  const result = await processEvent(event);
-
-  const response: APIGatewayProxyResult = {
-    body: JSON.stringify({ result: result.reason }),
-    headers: {
-      "Content-Type": "text/plain",
-      "Access-Control-Allow-Origin": "*",
-    },
-    isBase64Encoded: false,
-    statusCode: result.statusCode,
-  };
-
-  console.log("Response", response);
-
-  return response;
-};
-
-export { handler };

@@ -33,6 +33,7 @@
     "no-magic-numbers": "off",
     "no-ternary": "off",
     "no-underscore-dangle": "off",
+    "line-comment-position": "off",
     "no-unused-vars": [
       "error",
       {
@@ -44,6 +45,7 @@
     ],
     "quotes": ["error", "double"],
     "id-length": "off",
+    "no-inline-comments": "off",
     "no-undefined": "off",
     "init-declarations": "off", // With TS, you can declare external variables, so you would not initialize
     "max-lines-per-function": ["error", { "max": 70 }],

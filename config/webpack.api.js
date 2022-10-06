@@ -3,10 +3,10 @@ const webpack = require("webpack");
 
 module.exports = {
   mode: "production",
-  entry: [`${__dirname}/../lambda/contact/index.ts`],
+  entry: [`${__dirname}/../lambda/index.ts`],
   target: "node",
   output: {
-    path: `${__dirname}/../dist-contact`,
+    path: `${__dirname}/../dist-api`,
     filename: "index.js",
     libraryTarget: "commonjs2",
   },

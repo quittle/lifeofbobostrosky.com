@@ -71,13 +71,36 @@ Resources:
   UpdatesTable:
     Type: AWS::DynamoDB::Table
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
+        - AttributeName: timeSubmitted
+          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
+        - AttributeName: timeSubmitted
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  MemorialWallTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: timeSubmitted
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: timeSubmitted
+          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
@@ -96,7 +119,7 @@ Resources:
   ContactLambda:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: "../dist-contact"
+      CodeUri: "../dist-api"
       Handler: index.handler
       FunctionName:
         !Join ["", [LifeOfBobOstroskyContactLambda, !Ref StackNameSuffix]]
@@ -154,6 +177,93 @@ Resources:
         - /aws/lambda/${lambdaFunctionName}
         - lambdaFunctionName:
             !Join ["", [LifeOfBobOstroskyContactLambda, !Ref StackNameSuffix]]
+      RetentionInDays: 90
+
+  # Memorial Wall Lambda
+  MemorialWallBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        !Join ["", [lifeofbobostrosky.com-memorial-wall, !Ref StackNameSuffix]]
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ["*"]
+            AllowedMethods: ["POST"]
+            AllowedOrigins: ["*"]
+            ExposedHeaders: []
+  MemorialWallLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: "../dist-api"
+      Handler: index.handler
+      FunctionName:
+        !Join ["", [LifeOfBobOstroskyMemorialWallLambda, !Ref StackNameSuffix]]
+      MemorySize: 128
+      Role: !GetAtt MemorialWallLambdaRole.Arn
+      Runtime: nodejs14.x
+      Environment:
+        Variables:
+          DYNAMO_DB_TABLE_NAME: !Ref MemorialWallTable
+          S3_BUCKET_NAME: !Ref MemorialWallBucket
+      Events:
+        HttpPost:
+          Type: Api
+          Properties:
+            Path: "/memorial-wall"
+            Method: post
+            RestApiId: !Ref Api
+  MemorialWallLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Effect: Allow
+                Resource: !Sub
+                  - arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${lambdaFunctionName}:*
+                  - lambdaFunctionName:
+                      !Join [
+                        "",
+                        [
+                          LifeOfBobOstroskyMemorialWallLambda,
+                          !Ref StackNameSuffix,
+                        ],
+                      ]
+              - Action: ses:SendEmail
+                Effect: Allow
+                Resource: !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/lifeofbobostrosky.com
+              - Action: dynamodb:PutItem
+                Effect: Allow
+                Resource: !GetAtt MemorialWallTable.Arn
+              - Action: s3:PutObject
+                Effect: Allow
+                Resource: !Sub
+                  - "${BucketArn}/*"
+                  - BucketArn: !GetAtt MemorialWallBucket.Arn
+          PolicyName: lambda
+  MemorialWallLambdaLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub
+        - /aws/lambda/${lambdaFunctionName}
+        - lambdaFunctionName:
+            !Join [
+              "",
+              [LifeOfBobOstroskyMemorialWallLambda, !Ref StackNameSuffix],
+            ]
       RetentionInDays: 90
 
   # CloudFront

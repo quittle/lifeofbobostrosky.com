@@ -1,23 +1,18 @@
-import { DynamoDB } from "aws-sdk";
+import { ContactFormData } from "./request";
+import DynamoDB from "aws-sdk/clients/dynamodb";
+import { dynamoDBClient } from "../common/aws";
+import { getDynamoDBTableName } from "../common";
 import { randomUUID } from "crypto";
 
-const dynamoDBClient = new DynamoDB();
-
-export async function saveToTable(
-  tableName: string,
-  args: {
-    name: string;
-    email: string | null;
-    phone: string | null;
-    address: string | null;
-    message: string;
-  }
-): Promise<void> {
+export async function saveToTable(args: ContactFormData): Promise<void> {
   const params: DynamoDB.Types.PutItemInput = {
-    TableName: tableName,
+    TableName: getDynamoDBTableName(),
     Item: {
       id: {
         S: randomUUID(),
+      },
+      timeSubmitted: {
+        S: new Date().toISOString(),
       },
       name: {
         S: args.name,

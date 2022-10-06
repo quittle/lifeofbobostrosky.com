@@ -1,6 +1,7 @@
 import { Breakpoints } from "./styles";
 import Gallery from "./gallery/Gallery";
 import Hero from "./Hero";
+import MemorialWall from "./MemorialWall";
 import Nav from "./Nav";
 import Obituary from "./Obituary";
 import Plans from "./Plans";
@@ -35,6 +36,7 @@ export default function Body(_props: Record<string, never>) {
             { link: "#updates", label: "Updates" },
             { link: "#obituary", label: "Obituary" },
             { link: "#gallery", label: "Gallery" },
+            { link: "#memorial-wall", label: "Memorial Wall" },
             { link: "#plans", label: "Plans" },
           ]}
         />
@@ -43,6 +45,7 @@ export default function Body(_props: Record<string, never>) {
           <Updates />
           <Obituary />
           <Gallery />
+          <MemorialWall />
           <Plans />
         </main>
       </div>
