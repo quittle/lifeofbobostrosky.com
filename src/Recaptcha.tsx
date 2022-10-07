@@ -4,6 +4,7 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   recaptchaBlurb: {
     fontSize: "0.70em",
+    margin: "1em 0",
   },
   "@global": {
     ".grecaptcha-badge": {

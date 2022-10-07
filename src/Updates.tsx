@@ -25,7 +25,6 @@ const useStyles = createUseStyles({
   },
   submissionResult: {
     padding: "0.5em",
-    fontSize: "1.5em",
     border: "0.2em solid black",
     ...darkText,
     display: "none",

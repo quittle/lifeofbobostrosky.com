@@ -11,16 +11,18 @@ function getMemorialWallFormSubmitButton(): HTMLButtonElement {
   ) as HTMLButtonElement;
 }
 
-function setResult(resultSuccess: boolean | null, message: string) {
+function setResult(resultSuccess: boolean | null, errorMessage: string | null) {
   const memorialWallForm = getMemorialWallForm();
 
   getMemorialWallFormSubmitButton().disabled = false;
 
   memorialWallForm.classList.toggle("submit-error", !(resultSuccess ?? true));
   memorialWallForm.classList.toggle("submit-success", resultSuccess ?? false);
-  memorialWallForm
-    .querySelectorAll("aside")
-    .forEach((aside) => (aside.innerText = message));
+
+  if (errorMessage !== null) {
+    (memorialWallForm.querySelector("aside.error") as HTMLElement).innerText =
+      errorMessage;
+  }
 }
 
 /**
@@ -107,7 +109,7 @@ export function initMemorialWall() {
     if (uploadFileErrors.length > 0) {
       setResult(false, uploadFileErrors.join(". "));
     } else {
-      setResult(true, "Submission successful");
+      setResult(true, null);
     }
   });
 }

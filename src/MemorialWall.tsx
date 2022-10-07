@@ -79,7 +79,10 @@ export default function MemorialWall(_props: Record<string, never>) {
         <div className={styles.submitWrapper}>
           <button type="submit">Submit Memory</button>
           <span className={styles.success}>
-            <StatusBlock type="success" />
+            <StatusBlock type="success">
+              Thank you for sharing. <a href="#updates">Sign up</a> to be
+              notified about updates.
+            </StatusBlock>
           </span>
           <span className={styles.error}>
             <StatusBlock type="error" />

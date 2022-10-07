@@ -54,6 +54,7 @@ const styleSheet = jss.createStyleSheet({
       display: "inline-block",
       width: "100%",
       padding: "1em",
+      maxWidth: 1000,
     },
     input: inputCommon,
     textarea: inputCommon,

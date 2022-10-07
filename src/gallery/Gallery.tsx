@@ -36,6 +36,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     position: "relative",
+    maxWidth: "initial",
     "& ul": {
       display: "flex",
       overflowX: "auto",
@@ -82,6 +83,7 @@ const useStyles = createUseStyles({
         height: "50%",
         display: "block",
         padding: `${paddingEm}em ${paddingEm}em ${paddingEm / 2}em`,
+        objectFit: "cover",
       },
     },
   },
