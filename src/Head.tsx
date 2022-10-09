@@ -1,3 +1,4 @@
+import HeadSocial, { DESCRIPTION, TITLE } from "./HeadSocial";
 import React from "react";
 
 export default function Head(_props: Record<string, never>) {
@@ -19,12 +20,9 @@ export default function Head(_props: Record<string, never>) {
       />
       <meta charSet="utf-8" />
 
-      <title>Robert Ostrosky</title>
+      <title>{TITLE}</title>
 
-      <meta
-        content="A dedication to the life of Robert Ostrosky. 1929–2022"
-        name="description"
-      />
+      <meta content={DESCRIPTION} name="description" />
       <meta content="width=device-width, initial-scale=1" name="viewport" />
 
       <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -48,6 +46,8 @@ export default function Head(_props: Record<string, never>) {
         defer
         src="https://www.google.com/recaptcha/api.js?render=6LcT-UEfAAAAALIl7NO1JPZvYuvVxDF6kyzYc1gH"
       />
+
+      <HeadSocial />
     </head>
   );
 }
