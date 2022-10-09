@@ -1,18 +1,18 @@
 import React from "react";
 
 export const DESCRIPTION =
-  "A dedication to the life of Robert Ostrosky. 1929–2022";
+  "A dedication to the life of Robert Ostrosky. 1929 – 2022";
 
 export const TITLE = "Life of Bob Ostrosky";
 
 const IMAGE_ALT_TEXT =
-  "Bland-and-white photo of Robert Ostrosky in February 1967";
+  "Black-and-white photo of Robert Ostrosky in February 1967";
 
 export default function HeadSocial(_props: Record<string, never>) {
   return (
     <>
       <meta content={TITLE} property="og:title" />
-      <meta content="article" property="og:type" />
+      <meta content="website" property="og:type" />
       <meta
         content={`https://lifeofbobostrosky.com${"/src/images/social-small.png"}`}
         property="og:image"

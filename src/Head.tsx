@@ -1,5 +1,6 @@
 import HeadSocial, { DESCRIPTION, TITLE } from "./HeadSocial";
 import React from "react";
+import colors from "./colors";
 
 export default function Head(_props: Record<string, never>) {
   return (
@@ -46,6 +47,10 @@ export default function Head(_props: Record<string, never>) {
         defer
         src="https://www.google.com/recaptcha/api.js?render=6LcT-UEfAAAAALIl7NO1JPZvYuvVxDF6kyzYc1gH"
       />
+
+      <meta content={colors.darkGrey} name="theme-color" />
+
+      <link href="/src/images/favicon-512.png" rel="icon" type="image/png" />
 
       <HeadSocial />
     </head>
