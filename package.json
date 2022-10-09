@@ -41,7 +41,7 @@
     "css-minimizer-webpack-plugin": "^4.2.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react": "^7.31.9",
     "file-loader": "^6.2.0",
     "focus-trap": "^7.0.0",
     "html-loader": "^4.2.0",
