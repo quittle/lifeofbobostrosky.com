@@ -3,5 +3,16 @@
     "@babel/preset-env",
     "@babel/preset-react",
     "@babel/preset-typescript"
+  ],
+  "plugins": [
+    [
+      "file-loader",
+      {
+        "name": "src/[path][name].[ext]",
+        "extensions": ["png", "jpg", "jpeg", "gif", "svg"],
+        "publicPath": "",
+        "outputPath": null
+      }
+    ]
   ]
 }

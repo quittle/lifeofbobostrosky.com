@@ -1,4 +1,5 @@
 import React from "react";
+import socialSmall from "./images/social-small.png";
 
 export const DESCRIPTION =
   "A dedication to the life of Robert Ostrosky. 1929 – 2022";
@@ -13,10 +14,7 @@ export default function HeadSocial(_props: Record<string, never>) {
     <>
       <meta content={TITLE} property="og:title" />
       <meta content="website" property="og:type" />
-      <meta
-        content={`https://lifeofbobostrosky.com${"/src/images/social-small.png"}`}
-        property="og:image"
-      />
+      <meta content={socialSmall as string} property="og:image" />
       <meta content="https://lifeofbobostrosky.com" property="og:url" />
       <meta content="summary_large_image" name="twitter:card" />
 

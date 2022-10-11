@@ -37,6 +37,13 @@ const config = {
         use: ["file-loader"],
       },
       {
+        test: /social-small\.png$/,
+        loader: "file-loader",
+        options: {
+          name: "https://lifeofbobostrosky.com/[contenthash].[ext]",
+        },
+      },
+      {
         test: /\.(png|jpg|bmp)$/i,
         use: ["file-loader", "webpack-image-resize-loader"],
       },
