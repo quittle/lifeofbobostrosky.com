@@ -37,15 +37,19 @@ const config = {
         use: ["file-loader"],
       },
       {
-        test: /social-small\.png$/,
-        loader: "file-loader",
-        options: {
-          name: "https://lifeofbobostrosky.com/[contenthash].[ext]",
-        },
-      },
-      {
         test: /\.(png|jpg|bmp)$/i,
-        use: ["file-loader", "webpack-image-resize-loader"],
+        oneOf: [
+          {
+            resourceQuery: /domainQualified/,
+            loader: "file-loader",
+            options: {
+              publicPath: "https://lifeofbobostrosky.com/",
+            },
+          },
+          {
+            use: ["file-loader", "webpack-image-resize-loader"],
+          },
+        ],
       },
       {
         test: /\.css$/,

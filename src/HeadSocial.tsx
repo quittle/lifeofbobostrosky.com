@@ -14,7 +14,10 @@ export default function HeadSocial(_props: Record<string, never>) {
     <>
       <meta content={TITLE} property="og:title" />
       <meta content="website" property="og:type" />
-      <meta content={socialSmall as string} property="og:image" />
+      <meta
+        content={(socialSmall as string) + "?domainQualified"}
+        property="og:image"
+      />
       <meta content="https://lifeofbobostrosky.com" property="og:url" />
       <meta content="summary_large_image" name="twitter:card" />
 
