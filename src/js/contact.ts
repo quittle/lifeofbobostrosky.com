@@ -1,5 +1,6 @@
 import { addRecaptchaToFormData } from "./recaptcha";
 import { multipartFormEncode } from "./form-utils";
+import sections from "../sections";
 
 function getContactForm(): HTMLFormElement {
   return document.getElementById("contact-form") as HTMLFormElement;
@@ -10,7 +11,7 @@ export function initContactForm() {
   contactForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
     const data = new FormData(contactForm);
-    await addRecaptchaToFormData(data, "updates");
+    await addRecaptchaToFormData(data, sections.updates.id);
 
     const body = multipartFormEncode(data);
     const response = await fetch(contactForm.action, {
@@ -39,8 +40,9 @@ export function initContactForm() {
     } else {
       resultDiv.classList.remove("success");
       resultDiv.classList.add("error");
+      (resultDiv.querySelector(".error-message") as HTMLElement).innerText =
+        result || "Error. Try refreshing";
     }
-    resultDiv.innerText = result || "Error. Try refreshing";
     try {
       resultDiv.scrollIntoView({
         block: "end",

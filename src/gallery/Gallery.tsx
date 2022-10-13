@@ -4,6 +4,7 @@ import React from "react";
 import colors from "../colors";
 import { createUseStyles } from "react-jss";
 import { getGalleryEntries } from "./gallery-entries";
+import sections from "../sections";
 
 const paddingEm = 1.5;
 const galleryItemCommon: JssStyle = {
@@ -132,8 +133,8 @@ export default function Gallery() {
   const galleryEntries = getGalleryEntries();
   const styles = useStyles();
   return (
-    <section className={styles.gallery} id="gallery">
-      <h1>Gallery</h1>
+    <section className={styles.gallery} id={sections.gallery.id}>
+      <h1>{sections.gallery.label}</h1>
       <ul>
         {galleryEntries.map((entry) => (
           <li key={entry.imgPath}>

@@ -1,7 +1,9 @@
+import { API_URL_BASE } from "./domains";
 import React from "react";
 import Recaptcha from "./Recaptcha";
 import StatusBlock from "./StatusBlock";
 import { createUseStyles } from "react-jss";
+import sections from "./sections";
 
 const useStyles = createUseStyles({
   memorialWall: {
@@ -33,11 +35,11 @@ const useStyles = createUseStyles({
 export default function MemorialWall(_props: Record<string, never>) {
   const styles = useStyles();
   return (
-    <section className={styles.memorialWall} id="memorial-wall">
-      <h1>Memorial Wall</h1>
+    <section className={styles.memorialWall} id={sections.memorialWall.id}>
+      <h1>{sections.memorialWall.label}</h1>
       <p>Please share your memories of Robert Ostrosky.</p>
       <form
-        action="https://api.lifeofbobostrosky.com/memorial-wall"
+        action={new URL("/memorial-wall", API_URL_BASE).toString()}
         encType="multipart/form-data"
         id="memorial-wall-form"
         method="post"
@@ -80,8 +82,8 @@ export default function MemorialWall(_props: Record<string, never>) {
           <button type="submit">Submit Memory</button>
           <span className={styles.success}>
             <StatusBlock type="success">
-              Thank you for sharing. <a href="#updates">Sign up</a> to be
-              notified about updates.
+              Thank you for sharing. <a href={sections.updates.link}>Sign up</a>{" "}
+              to be notified about updates.
             </StatusBlock>
           </span>
           <span className={styles.error}>

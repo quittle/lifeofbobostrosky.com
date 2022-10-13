@@ -1,6 +1,6 @@
+import { CssClasses, darkText } from "./styles";
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { darkText } from "./styles";
 
 const useStyles = createUseStyles({
   statusBlock: {
@@ -29,5 +29,11 @@ export default function StatusBlock({
   children?: React.ReactNode;
 }) {
   const classes = useStyles();
-  return <aside className={`${classes.statusBlock} ${type}`}>{children}</aside>;
+  return (
+    <aside
+      className={`${classes.statusBlock} ${type} ${CssClasses.LIGHT_BACKGROUND}`}
+    >
+      {children}
+    </aside>
+  );
 }

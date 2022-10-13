@@ -2,6 +2,7 @@ import { Breakpoints } from "./styles";
 import Picture from "./Picture";
 import React from "react";
 import { createUseStyles } from "react-jss";
+import sections from "./sections";
 
 const useStyles = createUseStyles({
   heroWrapper: {
@@ -49,7 +50,7 @@ const useStyles = createUseStyles({
 export default function Hero(_props: Record<string, never>) {
   const classes = useStyles();
   return (
-    <div className={classes.heroWrapper} id="home">
+    <div className={classes.heroWrapper} id={sections.home.id}>
       <Picture
         alt="Bland-and-white photo of Robert Ostrosky in February 1967"
         classes={classes.heroImg}

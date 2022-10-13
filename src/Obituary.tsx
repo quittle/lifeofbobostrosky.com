@@ -1,10 +1,11 @@
 import React from "react";
+import sections from "./sections";
 
 // eslint-disable-next-line max-lines-per-function
 export default function Obituary(_props: Record<string, never>) {
   return (
-    <section id="obituary">
-      <h2>Obituary</h2>
+    <section id={sections.obituary.id}>
+      <h2>{sections.obituary.label}</h2>
       <p>
         Robert Ostrosky, known by his friends as “Bob,” passed away peacefully,
         surrounded by his family, at his home in Clarksville, MD on April 3,
@@ -99,8 +100,8 @@ export default function Obituary(_props: Record<string, never>) {
       <p>
         A celebration of life will be held for him sometime in the coming year.
         If you wish to join us you may do so by{" "}
-        <a href="#updates">leaving us your information here</a> so that we can
-        notify you once plans have been made.
+        <a href={sections.updates.link}>leaving us your information here</a> so
+        that we can notify you once plans have been made.
       </p>
       <p>
         If you wish to donate in his name, you may do so at{" "}

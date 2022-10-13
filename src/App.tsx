@@ -1,10 +1,11 @@
-import { JssContext, jss } from "react-jss";
 import {
+  CssClasses,
   argyleBackground,
   headerFontFamily,
   lightText,
   regularFontFamily,
 } from "./styles";
+import { JssContext, jss } from "react-jss";
 import Body from "./Body";
 import Head from "./Head";
 import { JssStyle } from "jss";
@@ -63,6 +64,12 @@ const styleSheet = jss.createStyleSheet({
       color: colors.veryLightBlue,
       "&:visited": {
         color: colors.veryLightPurple,
+      },
+      [`.${CssClasses.LIGHT_BACKGROUND} &, &.${CssClasses.LIGHT_BACKGROUND}`]: {
+        color: colors.darkBlue,
+        "&:visited": {
+          color: colors.darkPurple,
+        },
       },
     },
   },

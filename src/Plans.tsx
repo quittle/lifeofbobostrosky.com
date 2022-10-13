@@ -1,13 +1,14 @@
 import React from "react";
+import sections from "./sections";
 
 export default function Plans(_props: Record<string, never>) {
   return (
-    <section id="plans">
-      <h2>Plans</h2>
+    <section id={sections.plans.id}>
+      <h2>{sections.plans.label}</h2>
       <p>
         Arrangements have not yet been made but if you{" "}
-        <a href="#updates">share your contact details</a> with us, we will let
-        you know when arrangements have been made.
+        <a href={sections.updates.link}>share your contact details</a> with us,
+        we will let you know when arrangements have been made.
       </p>
     </section>
   );

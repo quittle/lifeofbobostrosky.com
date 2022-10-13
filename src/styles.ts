@@ -60,3 +60,7 @@ export const Breakpoints = {
   SMALL: "400px",
   MEDIUM: "600px",
 } as const;
+
+export const CssClasses = {
+  LIGHT_BACKGROUND: "light-background",
+} as const;

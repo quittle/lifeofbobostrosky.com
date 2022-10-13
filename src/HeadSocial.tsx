@@ -1,4 +1,5 @@
 import React from "react";
+import { WWW_URL_BASE } from "./domains";
 import socialSmall from "./images/social-small.png";
 
 export const DESCRIPTION =
@@ -18,7 +19,7 @@ export default function HeadSocial(_props: Record<string, never>) {
         content={(socialSmall as string) + "?domainQualified"}
         property="og:image"
       />
-      <meta content="https://lifeofbobostrosky.com" property="og:url" />
+      <meta content={WWW_URL_BASE.toString()} property="og:url" />
       <meta content="summary_large_image" name="twitter:card" />
 
       <meta content={DESCRIPTION} property="og:description" />

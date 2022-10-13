@@ -8,6 +8,7 @@ import Plans from "./Plans";
 import React from "react";
 import Updates from "./Updates";
 import { createUseStyles } from "react-jss";
+import sections from "./sections";
 
 const useStyles = createUseStyles({
   wrapper: {
@@ -32,12 +33,12 @@ export default function Body(_props: Record<string, never>) {
       <div className={styles.wrapper}>
         <Nav
           entries={[
-            { link: "#home", label: "Home" },
-            { link: "#updates", label: "Updates" },
-            { link: "#obituary", label: "Obituary" },
-            { link: "#gallery", label: "Gallery" },
-            { link: "#memorial-wall", label: "Memorial Wall" },
-            { link: "#plans", label: "Plans" },
+            sections.home,
+            sections.updates,
+            sections.obituary,
+            sections.gallery,
+            sections.memorialWall,
+            sections.plans,
           ]}
         />
         <main className={styles.main}>
