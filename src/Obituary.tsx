@@ -120,7 +120,7 @@ export default function Obituary(_props: Record<string, never>) {
         >
           Fisher House Foundation
         </a>
-        , or
+        , or{" "}
         <a
           href="https://www.stjude.org/donate"
           rel="noreferrer"
