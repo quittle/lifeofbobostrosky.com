@@ -45,6 +45,18 @@ const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
       "Bob hanging out at the Annual Doloff Printing Company Picnic.",
     date: new Date("10/6/2002"),
   },
+  {
+    imageName: "8a4152b1-7bd2-47d1-b0dc-c18ac8eb35af.jpg",
+    description: "Bob and Joan in front of the house he grew up in.",
+    date: new Date("2013-01-29"),
+    location: "Windber, PA",
+  },
+  {
+    imageName: "c1bd286d-b59e-4fe3-9309-80607b5a502d.jpg",
+    description: "Bob showing his family around the house he grew up in.",
+    date: new Date("2013-01-29"),
+    location: "Windber, PA",
+  },
 ];
 
 function validateEntries(
