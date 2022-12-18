@@ -8,11 +8,11 @@ export default function Obituary(_props: Record<string, never>) {
       <h2>{sections.obituary.label}</h2>
       <p>
         Robert Ostrosky, known by his friends as “Bob,” passed away peacefully,
-        surrounded by his family, at his home in{" "}
-        <address>Clarksville, MD</address> on <time>April 3, 2022</time>, at the
-        age of 93. He was a medical miracle, having survived for many decades
-        after multiple cancers, strokes and renal failure. Bob ultimately
-        succumbed to cancer that had metastasized to his brain.
+        surrounded by his family, at his home in Clarksville, MD on{" "}
+        <time>April 3, 2022</time>, at the age of 93. He was a medical miracle,
+        having survived for many decades after multiple cancers, strokes and
+        renal failure. Bob ultimately succumbed to cancer that had metastasized
+        to his brain.
       </p>
       <p>
         Bob was born on <time>February 15, 1929</time> to Frank “Trink” and
