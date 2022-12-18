@@ -8,18 +8,19 @@ export default function Obituary(_props: Record<string, never>) {
       <h2>{sections.obituary.label}</h2>
       <p>
         Robert Ostrosky, known by his friends as “Bob,” passed away peacefully,
-        surrounded by his family, at his home in Clarksville, MD on April 3,
-        2022, at the age of 93. He was a medical miracle, having survived for
-        many decades after multiple cancers, strokes and renal failure. Bob
-        ultimately succumbed to cancer that had metastasized to his brain.
+        surrounded by his family, at his home in{" "}
+        <address>Clarksville, MD</address> on <time>April 3, 2022</time>, at the
+        age of 93. He was a medical miracle, having survived for many decades
+        after multiple cancers, strokes and renal failure. Bob ultimately
+        succumbed to cancer that had metastasized to his brain.
       </p>
       <p>
-        Bob was born on February 15, 1929 to Frank “Trink” and Julianna “Julie”
-        Kusz Ostrosky in the small coal mining town of Windber, PA. He holds the
-        distinction of being the first in his family to be born in a hospital.
-        He was the baby of 11 children and was predeceased by all &mdash; John
-        Ostrosky, Kathern “Kay” Ostrosky Skolnick, Mary Ostrosky Tirello, Ann
-        Ostrosky Geibel, Rose Ostrosky Bernhardt, Michael Ostrosky, Joan
+        Bob was born on <time>February 15, 1929</time> to Frank “Trink” and
+        Julianna “Julie” Kusz Ostrosky in the small coal mining town of Windber,
+        PA. He holds the distinction of being the first in his family to be born
+        in a hospital. He was the baby of 11 children and was predeceased by all
+        – John Ostrosky, Kathern “Kay” Ostrosky Skolnick, Mary Ostrosky Tirello,
+        Ann Ostrosky Geibel, Rose Ostrosky Bernhardt, Michael Ostrosky, Joan
         Ostrosky Hmay, Nick Frank Ostrosky and Baby Boy Ostrosky who passed
         shortly after birth.
       </p>
@@ -64,14 +65,14 @@ export default function Obituary(_props: Record<string, never>) {
       <p>
         He was very active at PGAMA when it was known as PIW, PIMW, and
         P&amp;GCA, serving on the board for over 3 decades. Highlights include
-        being President of the Master Printers Division from 1985&ndash;1986 and
+        being President of the Master Printers Division from 1985-1986 and
         Master Printer of the Year in 1988.
       </p>
       <p>
         In 1950, he met Joan Winslow and they married in 1955, going on to have
         3 children, Tamara Ostrosky Doloff, Robert Merrill Ostrosky and Ladimer
         Frank Ostrosky. He is survived by all plus 2 grandchildren, Dustin
-        Robert Doloff Toff and Bailey Austin Doloff. Bob deeply loved his
+        Robert (Doloff) Toff and Bailey Austin Doloff. Bob deeply loved his
         family; his children and grandchildren all felt that they hit the
         lottery to have him as a father and grandfather. Not only was he kind
         with a dry sense of humor, but he was generous, humble, and wise, giving
@@ -94,14 +95,17 @@ export default function Obituary(_props: Record<string, never>) {
         After retiring in 2008 at the age of 79, Bob spent much of his time
         gardening and working on and around the house in which he and his wife
         took great pride, as they had 100% designed and built it themselves,
-        before moving there in 1976. Additionally, he continued enjoy golf,
+        before moving there in 1976. Additionally, he continued to enjoy golf,
         politics and spending time with family and friends.
       </p>
       <p>
         A celebration of life will be held for him sometime in the coming year.
-        If you wish to join us you may do so by{" "}
-        <a href={sections.updates.link}>leaving us your information here</a> so
-        that we can notify you once plans have been made.
+        If you wish to join us you may do so on this website by going to{" "}
+        <a href="#updates">
+          <b>Updates</b>
+        </a>
+        , and leaving us your information so that we can notify you once plans
+        have been made.
       </p>
       <p>
         If you wish to donate in his name, you may do so at{" "}
@@ -116,7 +120,7 @@ export default function Obituary(_props: Record<string, never>) {
         >
           Fisher House Foundation
         </a>
-        , or{" "}
+        , or
         <a
           href="https://www.stjude.org/donate"
           rel="noreferrer"
