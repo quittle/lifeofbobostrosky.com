@@ -35,7 +35,7 @@
     "no-underscore-dangle": "off",
     "line-comment-position": "off",
     "no-unused-vars": "off",
-    "quotes": ["error", "double"],
+    "quotes": ["error", "double", { "avoidEscape": true }],
     "id-length": "off",
     "no-inline-comments": "off",
     "no-undefined": "off",

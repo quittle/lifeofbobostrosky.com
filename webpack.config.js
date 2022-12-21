@@ -37,7 +37,7 @@ const config = {
         use: ["file-loader"],
       },
       {
-        test: /\.(png|jpg|bmp)$/i,
+        test: /\.(png|jpe?g|bmp)$/i,
         oneOf: [
           {
             resourceQuery: /domainQualified/,
