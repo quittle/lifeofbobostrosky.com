@@ -11,7 +11,7 @@ interface PartialGalleryEntry {
 const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
   {
     imageName: "DCP00362.JPG",
-    description: "Bob stripping.",
+    description: 'Bob laying film "stripping".',
     location: "Doloff Printing Inc.",
     date: new Date("January 11, 1997"),
   },
