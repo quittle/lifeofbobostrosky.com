@@ -116,6 +116,9 @@ const useStyles = createUseStyles({
     fontSize: "0.8em",
     alignItems: "flex-end",
     gap: "1em",
+    "& time": {
+      textAlign: "right",
+    },
   },
   galleryPrev: {
     ...galleryItemCommon,
@@ -128,6 +131,35 @@ const useStyles = createUseStyles({
     right: "1em",
   },
 });
+
+function dateToString(date: Date): string {
+  const locale = "en-us";
+  const dayOfMonth = date.getUTCDate();
+  const monthOfYear = date.getUTCMonth();
+  if (dayOfMonth === 1) {
+    const year = date.getUTCFullYear().toString();
+    if (monthOfYear === 0) {
+      return year;
+    }
+
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ][date.getUTCMonth()];
+    return `${month} ${year}`;
+  }
+  return date.toLocaleDateString(locale, { timeZone: "UTC" });
+}
 
 export default function Gallery() {
   const galleryEntries = getGalleryEntries();
@@ -144,7 +176,7 @@ export default function Gallery() {
               <small className={styles.locationDate}>
                 {entry.location ?? <div>{entry.location}</div>}
                 <time dateTime={entry.date.toUTCString()}>
-                  {entry.date.toLocaleDateString()}
+                  {dateToString(entry.date)}
                 </time>
               </small>
             </div>
