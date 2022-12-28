@@ -97,7 +97,7 @@ const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
   },
   {
     imageName: "img257.jpg",
-    description: "Portrait of Bob and Joan.",
+    description: "Wedding portrait of Bob and Joan.",
     date: new Date("1955-12-2"),
   },
   {

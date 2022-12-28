@@ -71,13 +71,12 @@ export default function Obituary(_props: Record<string, never>) {
       <p>
         In 1950, he met Joan Winslow and they married in 1955, going on to have
         3 children, Tamara Ostrosky Doloff, Robert Merrill Ostrosky and Ladimer
-        Frank Ostrosky. He is survived by all plus 2 grandchildren, Dustin
-        Robert (Doloff) Toff and Bailey Austin Doloff. Bob deeply loved his
-        family; his children and grandchildren all felt that they hit the
-        lottery to have him as a father and grandfather. Not only was he kind
-        with a dry sense of humor, but he was generous, humble, and wise, giving
-        timeless advice that will be carried with them for the rest of their
-        lives.
+        Frank Ostrosky. He is survived by all plus 2 grandsons, Dustin Robert
+        (Doloff) Toff and Bailey Austin Doloff. Bob deeply loved his family; his
+        children and grandsons all felt that they hit the lottery to have him as
+        a father and grandfather. Not only was he kind with a dry sense of
+        humor, but he was generous, humble, and wise, giving timeless advice
+        that will be carried with them for the rest of their lives.
       </p>
       <p>
         Throughout his life, Bob traveled the country and the world and was very
