@@ -5,8 +5,8 @@
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./dist-api",
     "react-build": "babel-node --extensions .js,.ts,.tsx react-build.ts src/js/index.ts dist/react-build.html dist/react-build.css dist/react-build.js src/App",
-    "eslint": "eslint 'src/**' 'lambda/**' 'scripts/*.ts'",
-    "eslint-fix": "eslint 'src/**' 'lambda/**' 'scripts/*.ts' --fix",
+    "eslint": "eslint 'src/**' 'lambda/**' 'scripts/**/*.mts'",
+    "eslint-fix": "eslint 'src/**' 'lambda/**' 'scripts/**/*.mts' --fix",
     "prettier": "prettier --check .",
     "prettier-fix": "prettier --write .",
     "lint": "npm run eslint && npm run prettier",
@@ -20,7 +20,7 @@
     "build-and-test": "npm run build && npm run build-prod && npm run build-apis && npm run lint",
     "release": "rm -rf ./dist && npm run build-prod && npm run build-apis && npm run deploy",
     "release-test": "rm -rf ./dist && npm run build-prod && npm run build-apis && npm run deploy-test",
-    "download-data": "./scripts/download-data.ts"
+    "download-data": "ts-node-esm ./scripts/download-data/index.mts"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",
@@ -45,6 +45,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.11",
     "file-loader": "^6.2.0",
+    "file-type": "^18.0.0",
     "focus-trap": "^7.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",

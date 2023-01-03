@@ -32,6 +32,7 @@ module.exports = {
             loader: "ts-loader",
             options: {
               configFile: `${__dirname}/../tsconfig.json`,
+              onlyCompileBundledFiles: true,
             },
           },
         ],

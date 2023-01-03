@@ -12,6 +12,7 @@ const config = {
     path: path.resolve(__dirname, "dist", "public"),
     filename: "[name]-[contenthash].js",
   },
+  stats: "verbose",
   module: {
     rules: [
       {
@@ -29,6 +30,7 @@ const config = {
           loader: "ts-loader",
           options: {
             configFile: `${__dirname}/tsconfig.json`,
+            onlyCompileBundledFiles: true,
           },
         },
       },

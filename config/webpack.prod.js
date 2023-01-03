@@ -2,7 +2,6 @@ const assert = require("assert").strict;
 const { merge } = require("webpack-merge");
 const common = require("../webpack.config.js");
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const { IMAGE_REGEX } = require("./webpack.utils.js");
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{TITLE}}</title>
+    <script>
+      const data = {{DATA}};
+      window.addEventListener('DOMContentLoaded', () => {
+          const list = document.querySelector("ul");
+          data.forEach(entry => {
+          const li = document.createElement("li");
+          li.innerHTML = entry;
+          list.appendChild(li);
+          });
+      });
+    </script>
+    <style type="text/css">
+      body {
+        max-width: 1500px;
+      }
+
+      blockquote {
+        padding-left: 1em;
+        border-left: 1em solid grey;
+        font-style: italic;
+      }
+
+      ul {
+        padding: 0;
+      }
+
+      li {
+        border: 0.2em solid rgb(168, 168, 168);
+        margin: 1em;
+        border-radius: 0.3em;
+        padding: 1em;
+        list-style: none;
+      }
+
+      ul img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{TITLE}}</h1>
+
+    <ul></ul>
+  </body>
+</html>

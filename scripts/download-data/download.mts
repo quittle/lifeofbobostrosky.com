@@ -1,40 +1,15 @@
-#!./node_modules/.bin/ts-node
-
-/* eslint-disable no-console */
-
 import * as fsSync from "fs";
-import AWS, { S3 } from "aws-sdk";
+import {
+  Resource,
+  getMemorialWallFile,
+  getMemorialWallFolder,
+  getStorageFolder,
+} from "./config.mjs";
+import { assertNotNull, getFileDetails } from "./utils.mjs";
+import AWS from "aws-sdk";
+const { S3 } = AWS;
 import { promises as fs } from "fs";
-import os from "os";
 import path from "path";
-import process from "process";
-
-const STACK_NAME = "lifeofbobostrosky-com";
-
-enum Resource {
-  UpdatesTable = "UpdatesTable",
-  MemorialWallTable = "MemorialWallTable",
-  MemorialWallBucket = "MemorialWallBucket",
-}
-
-async function getStorageFolder(stackName: string): Promise<string> {
-  const folder = path.join(os.homedir(), "Downloads", `${stackName}-download`);
-  await fs.mkdir(folder, { recursive: true });
-  return folder;
-}
-async function getMemorialWallFolder(stackName: string): Promise<string> {
-  const folder = path.join(await getStorageFolder(stackName), "memorial-wall");
-  fs.mkdir(folder, { recursive: true });
-  return folder;
-}
-
-function assertNotNull<T>(value: T, errorMessage?: string): NonNullable<T> {
-  if (value !== null && value !== undefined) {
-    return value;
-  }
-
-  throw new Error("Value was null: " + errorMessage);
-}
 
 async function scanTable(
   params: AWS.DynamoDB.ScanInput
@@ -60,7 +35,7 @@ async function scanTable(
   return scanResults;
 }
 
-async function downloadUpdates(
+export async function downloadUpdates(
   stackName: string,
   cloudformation: AWS.CloudFormation
 ): Promise<void> {
@@ -118,10 +93,24 @@ async function downloadMemorialWallFile(
     throw err;
   }
 
+  const bytes = assertNotNull(object.Body, "S3 object body null");
   await fs.writeFile(
     fileName,
     // @ts-expect-error Blob is incompatible
-    assertNotNull(object.Body, "S3 object body null")
+    bytes
+  );
+
+  const result = await getFileDetails(fileName);
+
+  if (result === null) {
+    console.warn(`Unable to determine the file type of ${fileName}`);
+    return;
+  }
+
+  await fs.writeFile(
+    `${fileName}.${result.extension}`,
+    // @ts-expect-error Blob is incompatible
+    bytes
   );
 }
 
@@ -142,7 +131,7 @@ async function getMemorialWallBucketName(
   );
 }
 
-async function downloadMemorialWall(
+export async function downloadMemorialWall(
   stackName: string,
   cloudformation: AWS.CloudFormation
 ): Promise<void> {
@@ -159,10 +148,7 @@ async function downloadMemorialWall(
 
   const entries = await scanTable({ TableName: tableName });
 
-  const memorialWallFile = path.join(
-    await getStorageFolder(stackName),
-    "memorial-wall.json"
-  );
+  const memorialWallFile = await getMemorialWallFile(stackName);
 
   const serializedUpdates = JSON.stringify(entries);
   await fs.writeFile(memorialWallFile, serializedUpdates);
@@ -176,19 +162,3 @@ async function downloadMemorialWall(
       .map((file) => downloadMemorialWallFile(stackName, bucketName, file))
   );
 }
-
-async function main() {
-  AWS.config.update({ region: "us-east-1" });
-  const stackName = process.env["STACK_NAME"] ?? STACK_NAME;
-
-  const cloudformation = new AWS.CloudFormation();
-  await Promise.all([
-    downloadUpdates(stackName, cloudformation),
-    downloadMemorialWall(stackName, cloudformation),
-  ]);
-}
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
