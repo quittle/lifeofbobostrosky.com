@@ -50,8 +50,12 @@ const useStyles = createUseStyles({
         listStyle: "none",
         background: theme.secondaryBackground,
         borderRadius: "0.5em",
-        display: "flex",
-        flexDirection: "column",
+        "& figure": {
+          display: "flex",
+          height: "100%",
+          margin: 0,
+          flexDirection: "column",
+        },
         scrollSnapAlign: "start",
         cursor: "pointer",
         maxWidth: "80vw",
@@ -170,16 +174,18 @@ export default function Gallery() {
       <ul>
         {galleryEntries.map((entry) => (
           <li key={entry.imgPath}>
-            <img alt="" src={entry.imgPath} />
-            <div className={styles.details}>
-              <div className={styles.description}>{entry.description}</div>
-              <small className={styles.locationDate}>
-                {entry.location ?? <div>{entry.location}</div>}
-                <time dateTime={entry.date.toUTCString()}>
-                  {dateToString(entry.date)}
-                </time>
-              </small>
-            </div>
+            <figure>
+              <img alt="" src={entry.imgPath} />
+              <figcaption className={styles.details}>
+                <div className={styles.description}>{entry.description}</div>
+                <small className={styles.locationDate}>
+                  {entry.location ?? <div>{entry.location}</div>}
+                  <time dateTime={entry.date.toUTCString()}>
+                    {dateToString(entry.date)}
+                  </time>
+                </small>
+              </figcaption>
+            </figure>
           </li>
         ))}
       </ul>
