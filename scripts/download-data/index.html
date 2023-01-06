@@ -7,9 +7,15 @@
       window.addEventListener('DOMContentLoaded', () => {
           const list = document.querySelector("ul");
           data.forEach(entry => {
-          const li = document.createElement("li");
-          li.innerHTML = entry;
-          list.appendChild(li);
+            const li = document.createElement("li");
+            li.innerHTML = entry;
+            list.appendChild(li);
+          });
+
+          document.querySelectorAll(".copyable").forEach(element => {
+            element.addEventListener("click", async () => {
+              await navigator.clipboard.writeText(element.textContent);
+            });
           });
       });
     </script>
@@ -38,6 +44,10 @@
 
       ul img {
         max-width: 100%;
+      }
+
+      .copyable {
+        cursor: pointer;
       }
     </style>
   </head>

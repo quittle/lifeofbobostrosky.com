@@ -1,6 +1,9 @@
 import { downloadMemorialWall, downloadUpdates } from "./download.mjs";
+import {
+  generateMemorialWallReport,
+  generateUpdatesReport,
+} from "./report.mjs";
 import AWS from "aws-sdk";
-import { generateReport } from "./report.mjs";
 import process from "process";
 
 const STACK_NAME = "lifeofbobostrosky-com";
@@ -15,7 +18,10 @@ async function main() {
     downloadMemorialWall(stackName, cloudformation),
   ]);
 
-  await generateReport(stackName);
+  await Promise.all([
+    generateMemorialWallReport(stackName),
+    generateUpdatesReport(stackName),
+  ]);
 }
 
 main().catch((err) => {

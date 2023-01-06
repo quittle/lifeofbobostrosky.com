@@ -3,7 +3,7 @@ import {
   Resource,
   getMemorialWallFile,
   getMemorialWallFolder,
-  getStorageFolder,
+  getUpdatesFile,
 } from "./config.mjs";
 import { assertNotNull, getFileDetails } from "./utils.mjs";
 import AWS from "aws-sdk";
@@ -51,10 +51,7 @@ export async function downloadUpdates(
 
   const entries = await scanTable({ TableName: tableName });
 
-  const updatesFile = path.join(
-    await getStorageFolder(stackName),
-    "updates.json"
-  );
+  const updatesFile = await getUpdatesFile(stackName);
 
   const serializedUpdates = JSON.stringify(entries);
   await fs.writeFile(updatesFile, serializedUpdates);

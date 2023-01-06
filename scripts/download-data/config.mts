@@ -31,3 +31,11 @@ export async function getMemorialWallReportFile(
 ): Promise<string> {
   return path.join(await getStorageFolder(stackName), "memorial-wall.html");
 }
+
+export async function getUpdatesFile(stackName: string): Promise<string> {
+  return path.join(await getStorageFolder(stackName), "updates.json");
+}
+
+export async function getUpdatesReportFile(stackName: string): Promise<string> {
+  return path.join(await getStorageFolder(stackName), "updates.html");
+}
