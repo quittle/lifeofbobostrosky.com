@@ -34,6 +34,7 @@ const ID_FILTER: Set<string> = new Set([
   "971040d8-bede-44c4-8cca-8abed67f9d4d",
   "6fb447da-f778-4c80-b112-6fdfd7af9f75",
   "cd59bccd-bae3-46bb-8c45-f6caf0f8eccc",
+  "d003562a-b617-4d60-adf7-8abb202c4b5f",
 ]);
 
 function FilterById(entry: { id: string | undefined }): boolean {
