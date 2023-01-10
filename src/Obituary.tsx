@@ -19,9 +19,9 @@ export default function Obituary(_props: Record<string, never>) {
         Julianna “Julie” Kusz Ostrosky in the small coal mining town of Windber,
         PA. He holds the distinction of being the first in his family to be born
         in a hospital. He was the baby of 11 children and was predeceased by all
-        – John Ostrosky, Kathern “Kay” Ostrosky Skolnick, Mary Ostrosky Tirello,
+        – John Ostrosky, Kathryn “Kay” Ostrosky Skolnick, Mary Ostrosky Tirello,
         Ann Ostrosky Geibel, Rose Ostrosky Bernhardt, Michael Ostrosky, Joan
-        Ostrosky Hmay, Nick Frank Ostrosky and Baby Boy Ostrosky who passed
+        Ostrosky Hmay, Nick Frank Ostrosky and Stephen Ostrosky who passed
         shortly after birth.
       </p>
       <p>

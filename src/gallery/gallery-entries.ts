@@ -191,6 +191,20 @@ const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
     location: "Clarksville, MD",
     date: new Date("2011-06-19"),
   },
+  {
+    imageName: "wedding.jpg",
+    description:
+      "Bob Ostrosky stands with his sister Joan Ostrosky Hmay near Kathryn Ostrosky Skolnick sitting on the far right at a wedding.",
+    location: "New York",
+    date: new Date("2003-04-29"),
+  },
+  {
+    imageName: "c41c418d-3f79-4582-9fe1-c4d68eb7c8d8.jpg",
+    description:
+      "Bob and his niece Sonya (born May 1932), daughter of Kathryn.",
+    location: "Brooklyn, New York",
+    date: new Date("1950-06-01"),
+  },
 ];
 
 function validateEntries(
