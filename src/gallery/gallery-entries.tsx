@@ -1,9 +1,12 @@
+import React from "react";
 import fs from "fs";
 import path from "path";
 
+type Description = string | React.ReactElement;
+
 interface PartialGalleryEntry {
   imageName: string;
-  description: string;
+  description: Description;
   date: Date;
   location?: string;
 }
@@ -193,15 +196,28 @@ const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
   },
   {
     imageName: "wedding.jpg",
-    description:
-      "Bob Ostrosky stands with his sister Joan Ostrosky Hmay near Kathryn Ostrosky Skolnick sitting on the far right at a wedding.",
-    location: "New York",
+    description: (
+      <>
+        <p>
+          On top, from left to right: Stan, Stephanie Sherbiak Troia
+          &#40;Bob&rsquo;s great-niece&#41;, Victor Troia &#40;Stephanie&rsquo;s
+          husband&#41;, Bob Ostrosky, and Joan Ostroksy Hmay.
+        </p>
+        <p>
+          Bottom Row, from left to right: Janice, Stanley Sherbiak
+          &#40;Bob&rsquo;s nephew-in-law&#41;, Sonya Sherbiak &#40;Bob&rsquo;s
+          niece and Stanley&rsquo;s wife&#41;, Michelle, Kathryn Ostrosky
+          Skolnick &#40;Bob&rsquo;s sister&#41;.
+        </p>
+      </>
+    ),
+    location: "Caroline's (Bob's great-great-niece) wedding, New York",
     date: new Date("2003-04-29"),
   },
   {
     imageName: "c41c418d-3f79-4582-9fe1-c4d68eb7c8d8.jpg",
     description:
-      "Bob and his niece Sonya (born May 1932), daughter of Kathryn.",
+      'Bob and his niece Sonya Sherbiak (born May 1932), daughter of Kathryn ("Kay").',
     location: "Brooklyn, New York",
     date: new Date("1950-06-01"),
   },
@@ -219,10 +235,12 @@ function validateEntries(
   }
 
   entries.forEach(({ description }) => {
-    if (!description.endsWith(".")) {
-      throw new Error(
-        `Description should be a sentence ending in punctuation. Description was "${description}`
-      );
+    if (typeof description === "string") {
+      if (!description.endsWith(".")) {
+        throw new Error(
+          `Description should be a sentence ending in punctuation. Description was "${description}`
+        );
+      }
     }
   });
 
@@ -242,7 +260,7 @@ function validateEntries(
 
 export interface GalleryEntry {
   imgPath: string;
-  description: string;
+  description: Description;
   date: Date;
   location: string | undefined;
 }
