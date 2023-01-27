@@ -57,6 +57,16 @@ const styleSheet = jss.createStyleSheet({
       padding: "1em",
       maxWidth: 1000,
     },
+    figure: {
+      margin: 0,
+    },
+    blockquote: {
+      fontStyle: "italic",
+      borderLeft: "0.25em solid",
+      padding: "0 1em",
+      margin: 0,
+      ...lightText,
+    },
     input: inputCommon,
     textarea: inputCommon,
     button: inputCommon,

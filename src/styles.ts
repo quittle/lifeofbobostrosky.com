@@ -3,10 +3,12 @@ import colors from "./colors";
 
 export const lightText: JssStyle = {
   color: colors.lightGrey,
+  borderColor: colors.lightGrey,
 };
 
 export const darkText: JssStyle = {
   color: colors.darkGrey,
+  borderColor: colors.darkGrey,
 };
 
 export const secondaryBackground = colors.lightBlue;
