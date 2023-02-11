@@ -54,7 +54,7 @@
     "nodemon": "^2.0.20",
     "prettier": "^2.8.4",
     "react-dom": "^18.2.0",
-    "react-jss": "^10.9.2",
+    "react-jss": "^10.10.0",
     "s3-upload-custom-resource-lambda-layer": "^1.0.3",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
