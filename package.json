@@ -51,7 +51,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jss": "^10.10.0",
     "mini-css-extract-plugin": "^2.7.2",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "prettier": "^2.8.4",
     "react-dom": "^18.2.0",
     "react-jss": "^10.10.0",
