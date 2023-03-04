@@ -6,9 +6,10 @@ export default function Plans(_props: Record<string, never>) {
     <section id={sections.plans.id}>
       <h2>{sections.plans.label}</h2>
       <p>
-        Arrangements have not yet been made but if you{" "}
+        Arrangements are being made for May 7th, 2023. If you{" "}
         <a href={sections.updates.link}>share your contact details</a> with us,
-        we will let you know when arrangements have been made.
+        we will let you know when the arrangements are finalized with additional
+        details.
       </p>
     </section>
   );
