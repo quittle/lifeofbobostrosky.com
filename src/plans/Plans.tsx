@@ -67,7 +67,7 @@ export default function Plans(_props: Record<string, never>) {
         <BoringList listItemClassNames={[classes.scheduleItem]}>
           <Event
             end="5:00pm"
-            events={["Arrive & Sign Book", "Cocktails and Hors d’Oeuvres"]}
+            events={["Arrive & Sign Book", "Drinks and Hors d’Oeuvres"]}
             start="4:30pm"
           />
           <Event
