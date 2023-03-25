@@ -104,8 +104,9 @@ export default function MemorialWall(_props: Record<string, never>) {
           <button type="submit">Submit Memory</button>
           <span className={styles.success}>
             <StatusBlock type="success">
-              Thank you for sharing. <a href={sections.updates.link}>Sign up</a>{" "}
-              to be notified about updates.
+              Thank you for sharing.{" "}
+              <a href={sections.plans.link}>Please RSVP</a> to attend his
+              Celebration of Life.
             </StatusBlock>
           </span>
           <span className={styles.error}>

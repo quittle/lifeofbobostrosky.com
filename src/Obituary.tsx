@@ -98,13 +98,12 @@ export default function Obituary(_props: Record<string, never>) {
         politics and spending time with family and friends.
       </p>
       <p>
-        A celebration of life will be held for him sometime in the coming year.
-        If you wish to join us you may do so on this website by going to{" "}
-        <a href="#updates">
-          <b>Updates</b>
+        A celebration of life will be held for him <time>May 7th, 2023</time>.
+        To attend, please{" "}
+        <a href={sections.plans.link}>
+          <b>RSVP here</b>
         </a>
-        , and leaving us your information so that we can notify you once plans
-        have been made.
+        .
       </p>
       <p>
         If you wish to donate in his name, you may do so at{" "}

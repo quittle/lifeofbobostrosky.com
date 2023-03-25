@@ -39,9 +39,10 @@
     "id-length": "off",
     "no-inline-comments": "off",
     "no-undefined": "off",
+    "capitalized-comments": "off",
     "no-shadow": "off",
     "init-declarations": "off", // With TS, you can declare external variables, so you would not initialize
-    "max-lines-per-function": ["error", { "max": 70 }],
+    "max-lines-per-function": ["error", { "max": 100 }],
     "dot-notation": "off",
     "react/jsx-filename-extension": [
       "error",

@@ -1,5 +1,4 @@
 import { createFocusTrap } from "focus-trap";
-import { initContactForm } from "./contact";
 import { initGallery } from "./gallery";
 import { initMemorialWall } from "./memorial-wall";
 
@@ -87,12 +86,20 @@ function initNav() {
   }
 }
 
+function initLinks() {
+  document
+    .querySelectorAll<HTMLAnchorElement>("a[data-encoded-href]")
+    .forEach((element) => {
+      element.href = atob(element.dataset["encodedHref"] ?? "");
+    });
+}
+
 function init() {
   initScroll();
   initNav();
-  initContactForm();
   initMemorialWall();
   initGallery();
+  initLinks();
 }
 
 init();

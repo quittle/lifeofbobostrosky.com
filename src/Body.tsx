@@ -4,9 +4,8 @@ import Hero from "./Hero";
 import MemorialWall from "./MemorialWall";
 import Nav from "./Nav";
 import Obituary from "./Obituary";
-import Plans from "./Plans";
+import Plans from "./plans/Plans";
 import React from "react";
-import Updates from "./Updates";
 import { createUseStyles } from "react-jss";
 import sections from "./sections";
 
@@ -34,20 +33,18 @@ export default function Body(_props: Record<string, never>) {
         <Nav
           entries={[
             sections.home,
-            sections.updates,
+            sections.plans,
             sections.obituary,
             sections.gallery,
             sections.memorialWall,
-            sections.plans,
           ]}
         />
         <main className={styles.main}>
           <Hero />
-          <Updates />
+          <Plans />
           <Obituary />
           <Gallery />
           <MemorialWall />
-          <Plans />
         </main>
       </div>
     </body>

@@ -52,10 +52,12 @@ const styleSheet = jss.createStyleSheet({
       zIndex: 0,
     },
     section: {
-      display: "inline-block",
       width: "100%",
       padding: "1em",
       maxWidth: 1000,
+    },
+    address: {
+      fontStyle: "normal",
     },
     figure: {
       margin: 0,

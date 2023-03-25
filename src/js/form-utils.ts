@@ -13,7 +13,7 @@ export async function submitFormWithRecaptchaForResult(
   form: HTMLFormElement,
   formData: FormData
 ): Promise<unknown> {
-  await addRecaptchaToFormData(formData, "updates");
+  await addRecaptchaToFormData(formData, form.id.replaceAll("-", "_"));
 
   const body = multipartFormEncode(formData);
   const response = await fetch(form.action, {
