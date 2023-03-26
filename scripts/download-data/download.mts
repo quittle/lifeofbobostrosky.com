@@ -153,9 +153,11 @@ export async function downloadMemorialWall(
   console.info(
     `Wrote ${serializedUpdates.length} chars to ${memorialWallFile}`
   );
-  entries.flatMap((entry) =>
-    assertNotNull(entry["files"].SS, "Required non-null string set")
-      .filter((file) => file !== "")
-      .map((file) => downloadMemorialWallFile(stackName, bucketName, file))
+  await Promise.all(
+    entries.flatMap((entry) =>
+      assertNotNull(entry["files"].SS, "Required non-null string set")
+        .filter((file) => file !== "")
+        .map((file) => downloadMemorialWallFile(stackName, bucketName, file))
+    )
   );
 }

@@ -18,7 +18,7 @@ export async function getMemorialWallFolder(
   stackName: string
 ): Promise<string> {
   const folder = path.join(await getStorageFolder(stackName), "memorial-wall");
-  fs.mkdir(folder, { recursive: true });
+  await fs.mkdir(folder, { recursive: true });
   return folder;
 }
 

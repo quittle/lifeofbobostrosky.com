@@ -35,6 +35,21 @@ const ID_FILTER: Set<string> = new Set([
   "6fb447da-f778-4c80-b112-6fdfd7af9f75",
   "cd59bccd-bae3-46bb-8c45-f6caf0f8eccc",
   "d003562a-b617-4d60-adf7-8abb202c4b5f",
+  "e87c29c1-a879-4126-b15d-776beccb6300",
+  "3cf5dae1-2f4b-43e1-b10e-c03126dcb60d",
+  "7463ae3e-3843-4c6f-a352-3a17db1bb41d",
+  "0b7df329-5508-494a-89e1-3789c3df2200",
+  "0621edbd-d9c0-49f8-b334-ef1f71164776",
+  "9c18b3f3-6903-4c6a-8a3c-da6e0c8ce689",
+  "785fbb32-f637-4ce9-bf64-7fd814814c4e",
+  "f12efe37-7c8b-451a-9fd8-80ae15086960",
+  "fa23a438-87a9-4f21-9e2c-6e9956e4fe7d",
+  "84593224-2a45-48bb-9e70-54d6b3794800",
+  "479eced9-3568-4c6c-8904-dafeb12e7e57",
+  "58d82e80-5044-45f6-81be-938d6f937990",
+  "cf716ba0-9cba-4048-8104-a41e258d86ef",
+  "51d27a8a-eacf-4981-a5ab-a3b66aefd1cc",
+  "3f700c23-890a-4bc6-9f56-02dc24637576",
 ]);
 
 function FilterById(entry: { id: string | undefined }): boolean {
@@ -114,6 +129,21 @@ async function generateReport(
   console.log("Created report:", outFile);
 }
 
+/**
+ * You can't have an empty StringSet in DynamoDB due to how storage works. "Empty" sets actually
+ * contain a single entry, an empty string. This handles that case and normalizes to what you would
+ * actually expect.
+ */
+function cleanStringSet(set: string[] | undefined): string[] {
+  if (!set) {
+    return [];
+  }
+  if (set.length === 1 && set[0] === "") {
+    return [];
+  }
+  return set;
+}
+
 export async function generateMemorialWallReport(
   stackName: string
 ): Promise<void> {
@@ -127,7 +157,7 @@ export async function generateMemorialWallReport(
       timeSubmitted: new Date(entry["timeSubmitted"]?.S ?? ""),
       date: entry["date"].S,
       location: entry["location"].S,
-      files: entry["files"].SS,
+      files: cleanStringSet(entry["files"].SS),
       contact: entry["contact"].S,
       memory: entry["memory"].S,
       name: entry["name"].S,
@@ -164,7 +194,7 @@ export async function generateMemorialWallReport(
             <div>
                 ${(await Promise.all(files?.map(makeImage) ?? [])).join("")}
             </div>
-            <div>Id: <span class="copyable">${id}</span></div>
+            <div>Id: <span class="copyable" title="Click to copy">${id}</span></div>
             `
       )
     )
