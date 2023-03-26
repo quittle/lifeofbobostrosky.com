@@ -13,6 +13,9 @@ const useStyles = createUseStyles({
   times: {
     fontWeight: "bold",
     width: "25%",
+    [`@media (max-width: ${Breakpoints.LARGE})`]: {
+      width: "initial",
+    },
   },
 });
 

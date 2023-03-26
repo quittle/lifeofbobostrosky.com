@@ -28,7 +28,7 @@ export default function Plans(_props: Record<string, never>) {
   return (
     <section id={sections.plans.id}>
       <h2>{sections.plans.label}</h2>
-      <p>A Celebration of Life will be held on May 7th, 2023.</p>
+      <p>A Celebration of Life</p>
       <PlanEntry title="When">
         <time>May 7th, 2023</time>
         <br />
@@ -94,11 +94,11 @@ export default function Plans(_props: Record<string, never>) {
         </address>
       </PlanEntry>
       <p>
-        We look forward to hearing everyone&apos;s memories, if you would like
+        We look forward to hearing everyone&apos;s memories. If you would like
         to share one at the celebration&hellip;
       </p>
       <p>
-        Please include the following
+        Please include the following:
         <ol>
           <li>Your name</li>
           <li>Where you&apos;re from</li>
