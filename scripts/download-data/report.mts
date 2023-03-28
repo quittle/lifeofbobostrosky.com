@@ -248,17 +248,19 @@ export async function generateContactReport(stackName: string) {
       return prev;
     }, {} as { [name: string]: { email: Set<string>; phone: Set<string> } });
 
-  const emails: string[] = [];
+  const emails = new Set<string>();
   const missingContacts = [];
 
   for (const [name, { email, phone }] of Object.entries(contacts)) {
     if (email.size > 0) {
-      emails.push(...Array.from(email));
+      for (const entry of email) {
+        emails.add(entry);
+      }
     } else {
       missingContacts.push({ name, phone: Array.from(phone) });
     }
   }
 
-  console.log("Email to:", emails.join(";"));
+  console.log("Email to:", Array.from(emails).join(";"));
   console.log("Non-emailable contacts", missingContacts);
 }
