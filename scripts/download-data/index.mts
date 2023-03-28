@@ -1,5 +1,6 @@
 import { downloadMemorialWall, downloadUpdates } from "./download.mjs";
 import {
+  generateContactReport,
   generateMemorialWallReport,
   generateUpdatesReport,
 } from "./report.mjs";
@@ -19,6 +20,7 @@ async function main() {
   ]);
 
   await Promise.all([
+    generateContactReport(stackName),
     generateMemorialWallReport(stackName),
     generateUpdatesReport(stackName),
   ]);
