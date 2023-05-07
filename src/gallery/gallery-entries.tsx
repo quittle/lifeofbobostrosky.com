@@ -4,12 +4,11 @@ import path from "path";
 
 type Description = string | React.ReactElement;
 
-interface PartialGalleryEntry {
-  imageName: string;
+type PartialGalleryEntry = {
   description: Description;
   date: Date;
   location?: string;
-}
+} & ({ imageName: string } | { imageNames: ReadonlyArray<string> });
 
 const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
   {
@@ -221,6 +220,30 @@ const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
     location: "Brooklyn, New York",
     date: new Date("1950-06-01"),
   },
+  {
+    imageName: "book-front.jpg",
+    description: (
+      <>
+        Front: Bob handmade & painted this 3D book plaque for Laura and Joe
+        Conway in 1966 when they all lived in Oxon Hill. It now hangs in the
+        bedroom of Joe&lsquo;s grandkids.
+      </>
+    ),
+    location: "Oxon Hill, MD",
+    date: new Date("1966-12-25"),
+  },
+  {
+    imageName: "book-back.jpg",
+    description: (
+      <>
+        Back: Bob handmade & painted this 3D book plaque for Laura and Joe
+        Conway in 1966 when they all lived in Oxon Hill. It now hangs in the
+        bedroom of Joe&lsquo;s grandkids.
+      </>
+    ),
+    location: "Oxon Hill, MD",
+    date: new Date("1966-12-25"),
+  },
 ];
 
 function validateEntries(
@@ -229,7 +252,14 @@ function validateEntries(
   // Validate all images used
   const fileNames = fs.readdirSync(path.join(__dirname, "images"));
   for (const fileName of fileNames) {
-    if (!entries.find((entry) => entry.imageName === fileName)) {
+    if (
+      !entries.find((entry) => {
+        if ("imageName" in entry) {
+          return entry.imageName === fileName;
+        }
+        return entry.imageNames.includes(fileName);
+      })
+    ) {
       throw new Error(`No entries for gallery image: ${fileName}`);
     }
   }
@@ -259,7 +289,7 @@ function validateEntries(
 }
 
 export interface GalleryEntry {
-  imgPath: string;
+  imgPaths: ReadonlyArray<string>;
   description: Description;
   date: Date;
   location: string | undefined;
@@ -268,7 +298,10 @@ export interface GalleryEntry {
 export function getGalleryEntries(): ReadonlyArray<GalleryEntry> {
   validateEntries(PARITAL_ENTRIES);
   return PARITAL_ENTRIES.map((entry) => ({
-    imgPath: `/src/gallery/images/${entry.imageName}`,
+    imgPaths: ("imageNames" in entry
+      ? entry.imageNames
+      : [entry.imageName]
+    ).map((imageName) => `/src/gallery/images/${imageName}`),
     description: entry.description,
     date: entry.date,
     location: entry.location,

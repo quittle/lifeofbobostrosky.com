@@ -1,4 +1,5 @@
 import * as theme from "../styles";
+import ImageGroup from "./ImageGroup";
 import { JssStyle } from "jss";
 import React from "react";
 import colors from "../colors";
@@ -173,9 +174,9 @@ export default function Gallery() {
       <h1>{sections.gallery.label}</h1>
       <ul>
         {galleryEntries.map((entry) => (
-          <li key={entry.imgPath}>
+          <li key={entry.imgPaths.join(", ")}>
             <figure>
-              <img alt="" src={entry.imgPath} />
+              <ImageGroup images={entry.imgPaths} />
               <figcaption className={styles.details}>
                 <div className={styles.description}>{entry.description}</div>
                 <small className={styles.locationDate}>
