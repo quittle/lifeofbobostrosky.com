@@ -45,7 +45,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
     "file-loader": "^6.2.0",
-    "file-type": "^18.3.0",
+    "file-type": "^18.4.0",
     "focus-trap": "^7.4.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
