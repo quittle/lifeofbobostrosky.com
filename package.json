@@ -55,7 +55,7 @@
     "prettier": "^2.8.8",
     "react-dom": "^18.2.0",
     "react-jss": "^10.10.0",
-    "s3-upload-custom-resource-lambda-layer": "^1.0.3",
+    "s3-upload-custom-resource-lambda-layer": "^1.1.0",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
