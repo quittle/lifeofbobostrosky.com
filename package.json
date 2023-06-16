@@ -48,7 +48,7 @@
     "file-type": "^18.5.0",
     "focus-trap": "^7.4.3",
     "html-loader": "^4.2.0",
-    "html-webpack-plugin": "^5.5.2",
+    "html-webpack-plugin": "^5.5.3",
     "jss": "^10.10.0",
     "mini-css-extract-plugin": "^2.7.6",
     "nodemon": "^2.0.22",
