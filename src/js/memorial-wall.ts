@@ -7,7 +7,7 @@ function getMemorialWallForm(): HTMLFormElement {
 
 function getMemorialWallFormSubmitButton(): HTMLButtonElement {
   return document.querySelector(
-    "#memorial-wall-form button[type=submit]"
+    "#memorial-wall-form button[type=submit]",
   ) as HTMLButtonElement;
 }
 
@@ -33,7 +33,7 @@ function setResult(resultSuccess: boolean | null, errorMessage: string | null) {
  */
 async function uploadFiles(
   presignedPostRequests: readonly PresignedPost[],
-  files: readonly File[]
+  files: readonly File[],
 ): Promise<readonly string[]> {
   if (presignedPostRequests.length !== files.length) {
     return ["Server error uploading files"];
@@ -51,13 +51,13 @@ async function uploadFiles(
         method: "POST",
         body: formData,
       });
-    })
+    }),
   );
 
   const errors = await Promise.all(
     uploadResponses
       .filter((response) => !response.ok)
-      .map((response) => response.text())
+      .map((response) => response.text()),
   );
 
   return errors;
@@ -91,7 +91,7 @@ export function initMemorialWall() {
     try {
       result = (await submitFormWithRecaptchaForResult(
         memorialWallForm,
-        data
+        data,
       )) as PresignedPost[];
     } catch (e) {
       setResult(false, `Error: ${e}`);

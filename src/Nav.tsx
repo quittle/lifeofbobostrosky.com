@@ -75,7 +75,7 @@ export default function Nav(
         link: string;
       }>
     >;
-  }>
+  }>,
 ) {
   const { entries } = props;
   const classes = useStyles();

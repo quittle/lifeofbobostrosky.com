@@ -5,7 +5,7 @@ import { saveToTable } from "./db";
 import { sendEmail } from "../common/email";
 
 export async function processEvent(
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<EventResult> {
   let formData: ContactFormData;
   try {

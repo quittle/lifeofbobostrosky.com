@@ -11,7 +11,7 @@ export type ContactFormData = {
 };
 
 export function handleRequest(
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<ContactFormData> {
   return parseRequest(event, async (response) => {
     const name = response.get("name");

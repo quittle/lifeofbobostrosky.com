@@ -4,14 +4,14 @@ export function multipartFormEncode(formData: FormData): string {
   return [...formData.entries()]
     .map(
       ([key, value]) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`
+        `${encodeURIComponent(key)}=${encodeURIComponent(value as string)}`,
     )
     .join("&");
 }
 
 export async function submitFormWithRecaptchaForResult(
   form: HTMLFormElement,
-  formData: FormData
+  formData: FormData,
 ): Promise<unknown> {
   await addRecaptchaToFormData(formData, form.id.replaceAll("-", "_"));
 

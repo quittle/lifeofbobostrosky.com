@@ -15,7 +15,7 @@ export async function getStorageFolder(stackName: string): Promise<string> {
 }
 
 export async function getMemorialWallFolder(
-  stackName: string
+  stackName: string,
 ): Promise<string> {
   const folder = path.join(await getStorageFolder(stackName), "memorial-wall");
   await fs.mkdir(folder, { recursive: true });
@@ -27,7 +27,7 @@ export async function getMemorialWallFile(stackName: string): Promise<string> {
 }
 
 export async function getMemorialWallReportFile(
-  stackName: string
+  stackName: string,
 ): Promise<string> {
   return path.join(await getStorageFolder(stackName), "memorial-wall.html");
 }

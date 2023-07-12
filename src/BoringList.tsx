@@ -20,7 +20,7 @@ export default function BoringList(
   props: React.PropsWithChildren<{
     listClassNames?: readonly string[];
     listItemClassNames?: readonly string[];
-  }>
+  }>,
 ) {
   const { children, listClassNames, listItemClassNames } = props;
 

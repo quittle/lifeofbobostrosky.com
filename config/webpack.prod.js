@@ -8,7 +8,7 @@ const { IMAGE_REGEX } = require("./webpack.utils.js");
 // Enable minification on HtmlWebpackPlugin plugin
 common.plugins.find(
   (plugin) =>
-    plugin.constructor && plugin.constructor.name === "HtmlWebpackPlugin"
+    plugin.constructor && plugin.constructor.name === "HtmlWebpackPlugin",
 ).userOptions.minify = {
   collapseWhitespace: true,
   conservativeCollapse: true,

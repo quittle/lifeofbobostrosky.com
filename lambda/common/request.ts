@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 
 export function parseRequest<T>(
   event: APIGatewayProxyEvent,
-  parse: (_params: URLSearchParams) => Promise<T>
+  parse: (_params: URLSearchParams) => Promise<T>,
 ): Promise<T> {
   const { body } = event;
   if (!body) {

@@ -22,7 +22,7 @@ interface RecaptchaResponse {
 
 async function checkRecaptchaResponse(
   event: APIGatewayProxyEvent,
-  recaptchaValue: string | null
+  recaptchaValue: string | null,
 ): Promise<void> {
   if (!recaptchaValue) {
     console.warn("Skipping recaptcha check due to it missing");
@@ -37,12 +37,12 @@ async function checkRecaptchaResponse(
         response: recaptchaValue,
         remoteip: event.requestContext.identity.sourceIp,
       },
-    }
+    },
   );
 
   if (response.status !== 200) {
     throw new Error(
-      `Unable to verify captcha: ${JSON.stringify(response.data)}`
+      `Unable to verify captcha: ${JSON.stringify(response.data)}`,
     );
   }
 
@@ -50,8 +50,8 @@ async function checkRecaptchaResponse(
   if (!recaptchaData.success) {
     throw new Error(
       `Captcha verification failed: ${JSON.stringify(
-        recaptchaData["error-codes"]
-      )}`
+        recaptchaData["error-codes"],
+      )}`,
     );
   }
 }

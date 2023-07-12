@@ -33,7 +33,7 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
  */
 // eslint-disable-next-line func-style
 const handler: APIGatewayProxyHandler = async (
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> => {
   console.log("Request Event", event);
 

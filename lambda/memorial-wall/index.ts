@@ -6,7 +6,7 @@ import { saveToTable } from "./db";
 import { sendEmail } from "../common/email";
 
 function generatePresignedUrls(
-  fileNames: readonly string[]
+  fileNames: readonly string[],
 ): readonly Record<string, unknown>[] {
   return fileNames.map(
     (fileName) =>
@@ -21,12 +21,12 @@ function generatePresignedUrls(
         ],
         // 3 minute expiry
         Expires: 3 * 60,
-      }) as never
+      }) as never,
   );
 }
 
 export async function processEvent(
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<EventResult> {
   let formData: MemorialWallFormData;
   try {

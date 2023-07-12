@@ -247,7 +247,7 @@ const PARITAL_ENTRIES: ReadonlyArray<PartialGalleryEntry> = [
 ];
 
 function validateEntries(
-  entries: ReadonlyArray<PartialGalleryEntry>
+  entries: ReadonlyArray<PartialGalleryEntry>,
 ): ReadonlyArray<PartialGalleryEntry> {
   // Validate all images used
   const fileNames = fs.readdirSync(path.join(__dirname, "images"));
@@ -268,7 +268,7 @@ function validateEntries(
     if (typeof description === "string") {
       if (!description.endsWith(".")) {
         throw new Error(
-          `Description should be a sentence ending in punctuation. Description was "${description}`
+          `Description should be a sentence ending in punctuation. Description was "${description}`,
         );
       }
     }

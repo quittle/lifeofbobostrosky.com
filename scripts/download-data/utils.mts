@@ -5,7 +5,7 @@ import path from "path";
 
 export function assertNotNull<T>(
   value: T,
-  errorMessage?: string
+  errorMessage?: string,
 ): NonNullable<T> {
   if (value !== null && value !== undefined) {
     return value;
@@ -15,7 +15,7 @@ export function assertNotNull<T>(
 }
 
 export async function getFileDetails(
-  filePath: string
+  filePath: string,
 ): Promise<{ extension: string; mimeType: string } | null> {
   const result = await fileTypeFromFile(filePath);
   if (result !== undefined) {

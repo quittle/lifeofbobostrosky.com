@@ -12,7 +12,7 @@ import { promises as fs } from "fs";
 import path from "path";
 
 async function scanTable(
-  params: AWS.DynamoDB.ScanInput
+  params: AWS.DynamoDB.ScanInput,
 ): Promise<AWS.DynamoDB.AttributeMap[]> {
   const dynamodb = new AWS.DynamoDB();
 
@@ -37,7 +37,7 @@ async function scanTable(
 
 export async function downloadUpdates(
   stackName: string,
-  cloudformation: AWS.CloudFormation
+  cloudformation: AWS.CloudFormation,
 ): Promise<void> {
   const update = await cloudformation
     .describeStackResource({
@@ -46,7 +46,7 @@ export async function downloadUpdates(
     })
     .promise();
   const tableName = assertNotNull(
-    update.StackResourceDetail?.PhysicalResourceId
+    update.StackResourceDetail?.PhysicalResourceId,
   );
 
   const entries = await scanTable({ TableName: tableName });
@@ -62,7 +62,7 @@ export async function downloadUpdates(
 async function downloadMemorialWallFile(
   stackName: string,
   bucketName: string,
-  key: string
+  key: string,
 ): Promise<void> {
   const folderName = await getMemorialWallFolder(stackName);
   const fileName = path.join(folderName, key);
@@ -83,7 +83,7 @@ async function downloadMemorialWallFile(
       console.warn(`s3:\\${bucketName}/${fileName} does not exist`);
       await fs.writeFile(
         fileName,
-        `This file did not exist at ${new Date().toLocaleString()}`
+        `This file did not exist at ${new Date().toLocaleString()}`,
       );
       return;
     }
@@ -94,7 +94,7 @@ async function downloadMemorialWallFile(
   await fs.writeFile(
     fileName,
     // @ts-expect-error Blob is incompatible
-    bytes
+    bytes,
   );
 
   const result = await getFileDetails(fileName);
@@ -107,13 +107,13 @@ async function downloadMemorialWallFile(
   await fs.writeFile(
     `${fileName}.${result.extension}`,
     // @ts-expect-error Blob is incompatible
-    bytes
+    bytes,
   );
 }
 
 async function getMemorialWallBucketName(
   stackName: string,
-  cloudformation: AWS.CloudFormation
+  cloudformation: AWS.CloudFormation,
 ): Promise<string> {
   const update = await cloudformation
     .describeStackResource({
@@ -124,13 +124,13 @@ async function getMemorialWallBucketName(
 
   return assertNotNull(
     update.StackResourceDetail?.PhysicalResourceId,
-    `Unable to find ${Resource.MemorialWallBucket}`
+    `Unable to find ${Resource.MemorialWallBucket}`,
   );
 }
 
 export async function downloadMemorialWall(
   stackName: string,
-  cloudformation: AWS.CloudFormation
+  cloudformation: AWS.CloudFormation,
 ): Promise<void> {
   const bucketName = await getMemorialWallBucketName(stackName, cloudformation);
   const update = await cloudformation
@@ -140,7 +140,7 @@ export async function downloadMemorialWall(
     })
     .promise();
   const tableName = assertNotNull(
-    update.StackResourceDetail?.PhysicalResourceId
+    update.StackResourceDetail?.PhysicalResourceId,
   );
 
   const entries = await scanTable({ TableName: tableName });
@@ -151,13 +151,13 @@ export async function downloadMemorialWall(
   await fs.writeFile(memorialWallFile, serializedUpdates);
 
   console.info(
-    `Wrote ${serializedUpdates.length} chars to ${memorialWallFile}`
+    `Wrote ${serializedUpdates.length} chars to ${memorialWallFile}`,
   );
   await Promise.all(
     entries.flatMap((entry) =>
       assertNotNull(entry["files"].SS, "Required non-null string set")
         .filter((file) => file !== "")
-        .map((file) => downloadMemorialWallFile(stackName, bucketName, file))
-    )
+        .map((file) => downloadMemorialWallFile(stackName, bucketName, file)),
+    ),
   );
 }

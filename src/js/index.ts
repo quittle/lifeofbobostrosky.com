@@ -75,7 +75,7 @@ function initNav() {
     },
     {
       root: document.documentElement,
-    }
+    },
   ).observe(menuButton);
 
   const navItems = document.querySelectorAll<HTMLAnchorElement>("nav a");

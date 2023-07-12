@@ -13,7 +13,7 @@ export type MemorialWallFormData = {
 };
 
 export function handleRequest(
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<MemorialWallFormData> {
   return parseRequest(event, async (response) => {
     const name = response.get("name");

@@ -21,7 +21,7 @@ function FilterById(entry: { id: string | undefined }): boolean {
 
 function SortBySubmissionTime(
   a: { timeSubmitted: Date },
-  b: { timeSubmitted: Date }
+  b: { timeSubmitted: Date },
 ): number {
   return b.timeSubmitted.valueOf() - a.timeSubmitted.valueOf();
 }
@@ -29,10 +29,10 @@ function SortBySubmissionTime(
 function FilterDuplicates(
   entry: AWS.DynamoDB.AttributeMap,
   index: number,
-  array: readonly AWS.DynamoDB.AttributeMap[]
+  array: readonly AWS.DynamoDB.AttributeMap[],
 ): boolean {
   function cleanEntry(
-    entryToClean: AWS.DynamoDB.AttributeMap
+    entryToClean: AWS.DynamoDB.AttributeMap,
   ): AWS.DynamoDB.AttributeMap {
     const entryClone = { ...entryToClean };
     delete entryClone["timeSubmitted"];
@@ -58,7 +58,7 @@ function FilterDuplicates(
 }
 
 async function parseDynamoDbAttributeMapFile(
-  file: string
+  file: string,
 ): Promise<AWS.DynamoDB.AttributeMap[]> {
   const contents = await fs.readFile(file, { encoding: "utf8" });
   return JSON.parse(contents) as AWS.DynamoDB.AttributeMap[];
@@ -69,7 +69,7 @@ async function getHtmlTemplate(): Promise<string> {
     getProjectRootDirectory(),
     "scripts",
     "download-data",
-    "index.html"
+    "index.html",
   );
   const contents = await fs.readFile(indexFilePath, {
     encoding: "utf8",
@@ -80,7 +80,7 @@ async function getHtmlTemplate(): Promise<string> {
 async function generateReport(
   outFile: string,
   title: string,
-  entries: string[]
+  entries: string[],
 ): Promise<void> {
   const htmlTemplate = await getHtmlTemplate();
 
@@ -108,10 +108,10 @@ function cleanStringSet(set: string[] | undefined): string[] {
 }
 
 export async function generateMemorialWallReport(
-  stackName: string
+  stackName: string,
 ): Promise<void> {
   const parsedContents = await parseDynamoDbAttributeMapFile(
-    await getMemorialWallFile(stackName)
+    await getMemorialWallFile(stackName),
   );
 
   const entries = parsedContents
@@ -158,15 +158,15 @@ export async function generateMemorialWallReport(
                 ${(await Promise.all(files?.map(makeImage) ?? [])).join("")}
             </div>
             <div>Id: <span class="copyable" title="Click to copy">${id}</span></div>
-            `
-      )
-    )
+            `,
+      ),
+    ),
   );
 }
 
 export async function generateUpdatesReport(stackName: string): Promise<void> {
   const parsedContents = await parseDynamoDbAttributeMapFile(
-    await getUpdatesFile(stackName)
+    await getUpdatesFile(stackName),
   );
 
   const entries = parsedContents
@@ -205,8 +205,8 @@ export async function generateUpdatesReport(stackName: string): Promise<void> {
               `
             }
             <div>Id: <span class="copyable">${id}</span></div>
-        `
-    )
+        `,
+    ),
   );
 }
 
@@ -228,25 +228,28 @@ export async function generateContactReport(stackName: string) {
       id: entry["id"]?.S,
     }))
     .filter(FilterById)
-    .reduce((prev, { email, phone, name, contact }) => {
-      if (!(name in prev)) {
-        prev[name] = { email: new Set(), phone: new Set() };
-      }
-      if (email) {
-        prev[name].email.add(email);
-      }
-      if (phone) {
-        prev[name].phone.add(phone);
-      }
-      if (contact) {
-        if (contact.includes("@")) {
-          prev[name].email.add(contact);
-        } else {
-          prev[name].phone.add(contact);
+    .reduce(
+      (prev, { email, phone, name, contact }) => {
+        if (!(name in prev)) {
+          prev[name] = { email: new Set(), phone: new Set() };
         }
-      }
-      return prev;
-    }, {} as { [name: string]: { email: Set<string>; phone: Set<string> } });
+        if (email) {
+          prev[name].email.add(email);
+        }
+        if (phone) {
+          prev[name].phone.add(phone);
+        }
+        if (contact) {
+          if (contact.includes("@")) {
+            prev[name].email.add(contact);
+          } else {
+            prev[name].phone.add(contact);
+          }
+        }
+        return prev;
+      },
+      {} as { [name: string]: { email: Set<string>; phone: Set<string> } },
+    );
 
   const emails = new Set<string>();
   const missingContacts = [];

@@ -26,7 +26,7 @@ function main(): void {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const AppElement: React.FunctionComponent = require(path.join(
     __dirname,
-    appRoot
+    appRoot,
   )).default;
 
   const sheets = new SheetsRegistry();
@@ -39,8 +39,8 @@ function main(): void {
         registry: sheets,
         children: null,
       },
-      React.createElement(AppElement)
-    )
+      React.createElement(AppElement),
+    ),
   );
 
   const css = sheets.toString();
@@ -52,14 +52,14 @@ function main(): void {
   const relativeCssFile = path.relative(path.dirname(outJsFile), outCssFile);
   const relativeRuntimeJsFile = path.relative(
     path.dirname(outJsFile),
-    runtimeJsFile
+    runtimeJsFile,
   );
   writeFileWithDirectory(
     outJsFile,
     `
     import './${relativeCssFile}';
     import './${relativeRuntimeJsFile}';
-    `
+    `,
   );
 }
 
