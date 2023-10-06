@@ -28,7 +28,7 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.0",
-    "@types/aws-lambda": "^8.10.122",
+    "@types/aws-lambda": "^8.10.123",
     "@types/aws-sdk": "^2.7.0",
     "@types/grecaptcha": "^3.0.5",
     "@types/react": "^18.2.23",
