@@ -30,7 +30,7 @@
     "@babel/preset-typescript": "^7.23.2",
     "@types/aws-lambda": "^8.10.124",
     "@types/aws-sdk": "^2.7.0",
-    "@types/grecaptcha": "^3.0.5",
+    "@types/grecaptcha": "^3.0.6",
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.13",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
