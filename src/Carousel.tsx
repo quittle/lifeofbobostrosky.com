@@ -107,7 +107,7 @@ const useStyles = createUseStyles({
 });
 
 interface Props {
-  entries: readonly { key: string; element: React.ReactElement }[];
+  readonly entries: readonly { key: string; element: React.ReactElement }[];
 }
 
 /**

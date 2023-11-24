@@ -17,9 +17,9 @@ const useStyles = createUseStyles({
 });
 
 export default function Event(props: {
-  start: string;
-  end: string;
-  events: readonly string[];
+  readonly start: string;
+  readonly end: string;
+  readonly events: readonly string[];
 }) {
   const classes = useStyles();
   const { start, end, events } = props;

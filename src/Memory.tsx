@@ -19,8 +19,8 @@ const useStyles = createUseStyles({
  * A memory for the memorial wall.
  */
 export default function Memory(props: {
-  children: React.ReactElement[];
-  author: string;
+  readonly children: React.ReactElement[];
+  readonly author: string;
 }) {
   const styles = useStyles();
   const { children, author } = props;

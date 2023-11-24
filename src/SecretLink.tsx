@@ -6,7 +6,10 @@ import { base64Encode } from "./utils";
  * Hides the contents of links from crawlers by resolving the link only at runtime with JS and
  * splitting the text with a bunch of other junk.
  */
-export default function SecretLink(props: { href: string; contents: string }) {
+export default function SecretLink(props: {
+  readonly href: string;
+  readonly contents: string;
+}) {
   const { href, contents } = props;
   const parts = contents.split("");
   return (

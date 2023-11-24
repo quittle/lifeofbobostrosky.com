@@ -11,7 +11,9 @@ const useStyles = createUseStyles({
   },
 });
 
-export default function ImageGroup(props: { images: ReadonlyArray<string> }) {
+export default function ImageGroup(props: {
+  readonly images: ReadonlyArray<string>;
+}) {
   const styles = useStyles();
   const { images } = props;
   if (images.length === 0) {

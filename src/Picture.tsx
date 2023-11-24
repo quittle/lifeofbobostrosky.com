@@ -6,10 +6,10 @@ export default function Picture({
   alt,
   widths,
 }: {
-  classes?: string;
-  alt: string;
-  src: string;
-  widths: ReadonlyArray<number>;
+  readonly classes?: string;
+  readonly alt: string;
+  readonly src: string;
+  readonly widths: ReadonlyArray<number>;
 }) {
   return (
     <img

@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
 
 export default function PlanEntry(
   props: React.PropsWithChildren<{
-    title: string;
+    readonly title: string;
   }>,
 ) {
   const classes = useStyles();

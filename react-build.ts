@@ -24,10 +24,9 @@ function main(): void {
   ] = args;
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const AppElement: React.FunctionComponent = require(path.join(
-    __dirname,
-    appRoot,
-  )).default;
+  const AppElement: React.FunctionComponent = require(
+    path.join(__dirname, appRoot),
+  ).default;
 
   const sheets = new SheetsRegistry();
 

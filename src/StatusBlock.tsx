@@ -25,8 +25,8 @@ export default function StatusBlock({
   type,
   children,
 }: {
-  type: "success" | "error";
-  children?: React.ReactNode;
+  readonly type: "success" | "error";
+  readonly children?: React.ReactNode;
 }) {
   const classes = useStyles();
   return (
