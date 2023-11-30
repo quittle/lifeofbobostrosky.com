@@ -1,10 +1,10 @@
 import { Breakpoints } from "./styles";
+import CelebrationOfLife from "./celebration-of-life/CelebrationOfLife";
 import Gallery from "./gallery/Gallery";
 import Hero from "./Hero";
 import MemorialWall from "./MemorialWall";
 import Nav from "./Nav";
 import Obituary from "./Obituary";
-import Plans from "./plans/Plans";
 import React from "react";
 import { createUseStyles } from "react-jss";
 import sections from "./sections";
@@ -33,7 +33,7 @@ export default function Body(_props: Record<string, never>) {
         <Nav
           entries={[
             sections.home,
-            sections.plans,
+            sections.celebrationOfLife,
             sections.obituary,
             sections.gallery,
             sections.memorialWall,
@@ -41,7 +41,7 @@ export default function Body(_props: Record<string, never>) {
         />
         <main className={styles.main}>
           <Hero />
-          <Plans />
+          <CelebrationOfLife />
           <Obituary />
           <Gallery />
           <MemorialWall />

@@ -100,7 +100,7 @@ export default function Obituary(_props: Record<string, never>) {
       <p>
         A celebration of life will be held for him <time>May 7th, 2023</time>.
         To attend, please{" "}
-        <a href={sections.plans.link}>
+        <a href={sections.celebrationOfLife.link}>
           <b>RSVP here</b>
         </a>
         .

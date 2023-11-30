@@ -105,8 +105,8 @@ export default function MemorialWall(_props: Record<string, never>) {
           <span className={styles.success}>
             <StatusBlock type="success">
               Thank you for sharing.{" "}
-              <a href={sections.plans.link}>Please RSVP</a> to attend his
-              Celebration of Life.
+              <a href={sections.celebrationOfLife.link}>Please RSVP</a> to
+              attend his Celebration of Life.
             </StatusBlock>
           </span>
           <span className={styles.error}>
