@@ -23,7 +23,7 @@
     "download-data": "ts-node-esm ./scripts/download-data/index.mts"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.7",
+    "@babel/core": "^7.28.0",
     "@babel/node": "^7.28.0",
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
