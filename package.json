@@ -50,7 +50,7 @@
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
     "jss": "^10.10.0",
-    "mini-css-extract-plugin": "^2.9.3",
+    "mini-css-extract-plugin": "^2.9.4",
     "nodemon": "^3.1.10",
     "prettier": "^3.1.1",
     "react-dom": "^19.1.1",
