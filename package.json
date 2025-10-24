@@ -26,7 +26,7 @@
     "@babel/core": "^7.28.4",
     "@babel/node": "^7.28.0",
     "@babel/preset-env": "^7.28.3",
-    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.27.1",
     "@types/aws-lambda": "^8.10.156",
     "@types/aws-sdk": "^2.7.4",
