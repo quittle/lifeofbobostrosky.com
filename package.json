@@ -52,7 +52,7 @@
     "jss": "^10.10.0",
     "mini-css-extract-plugin": "^2.9.4",
     "nodemon": "^3.1.11",
-    "prettier": "^3.1.1",
+    "prettier": "^3.7.2",
     "react-dom": "^19.2.0",
     "react-jss": "^10.10.0",
     "s3-upload-custom-resource-lambda-layer": "^1.2.2",
