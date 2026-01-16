@@ -31,7 +31,7 @@
     "@types/aws-lambda": "^8.10.159",
     "@types/aws-sdk": "^2.7.4",
     "@types/grecaptcha": "^3.0.9",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^6.21.0",
