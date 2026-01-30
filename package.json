@@ -53,7 +53,7 @@
     "mini-css-extract-plugin": "^2.10.0",
     "nodemon": "^3.1.11",
     "prettier": "^3.1.1",
-    "react-dom": "^19.2.3",
+    "react-dom": "^19.2.4",
     "react-jss": "^10.10.0",
     "s3-upload-custom-resource-lambda-layer": "^1.2.2",
     "ts-loader": "^9.5.4",
