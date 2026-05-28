@@ -19,9 +19,9 @@ export default function YoutubeEmbed(props: Props) {
     showInfo,
   } = props;
   const url = new URL(`https://www.youtube.com/embed/${videoId}`);
-  url.searchParams.set("modestbranding", modestBranding ?? true ? "1" : "0");
-  url.searchParams.set("rel", showRelatedVideos ?? false ? "1" : "0");
-  url.searchParams.set("showinfo", showInfo ?? false ? "1" : "0");
+  url.searchParams.set("modestbranding", (modestBranding ?? true) ? "1" : "0");
+  url.searchParams.set("rel", (showRelatedVideos ?? false) ? "1" : "0");
+  url.searchParams.set("showinfo", (showInfo ?? false) ? "1" : "0");
   url.searchParams.set("playsinline", "1");
   return (
     // eslint-disable-next-line react/iframe-missing-sandbox

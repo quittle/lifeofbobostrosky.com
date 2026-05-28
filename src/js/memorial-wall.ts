@@ -63,7 +63,6 @@ async function uploadFiles(
   return errors;
 }
 
-// eslint-disable-next-line max-lines-per-function
 export function initMemorialWall() {
   const memorialWallForm = getMemorialWallForm();
   memorialWallForm.addEventListener("submit", async (evt) => {

@@ -11,9 +11,9 @@ async function processEvent(event: APIGatewayProxyEvent): Promise<EventResult> {
   try {
     switch (event.requestContext.path) {
       case "/contact":
-        return processEventContact(event);
+        return await processEventContact(event);
       case "/memorial-wall":
-        return processEventMemorialWall(event);
+        return await processEventMemorialWall(event);
       default:
         return {
           statusCode: 404,

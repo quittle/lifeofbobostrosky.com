@@ -25,7 +25,7 @@ export async function getFileDetails(
   let fileContents;
   try {
     fileContents = await fs.readFile(filePath, { encoding: "utf8" });
-  } catch (e) {
+  } catch (_e) {
     return null;
   }
 

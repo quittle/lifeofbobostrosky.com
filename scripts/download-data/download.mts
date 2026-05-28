@@ -17,7 +17,7 @@ async function scanTable(
   const dynamodb = new AWS.DynamoDB();
 
   const scanResults: AWS.DynamoDB.AttributeMap[] = [];
-  // eslint-disable-next-line no-constant-condition
+
   while (true) {
     // eslint-disable-next-line no-await-in-loop
     const items = await dynamodb.scan(params).promise();
