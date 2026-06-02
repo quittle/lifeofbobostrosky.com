@@ -57,7 +57,7 @@
     "react-dom": "^19.2.6",
     "react-jss": "^10.10.0",
     "s3-upload-custom-resource-lambda-layer": "^1.2.2",
-    "ts-loader": "^9.5.7",
+    "ts-loader": "^9.6.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "webpack": "^5.107.2",
