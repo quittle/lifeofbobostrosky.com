@@ -4,7 +4,6 @@ on: pull_request
 
 permissions:
   pull-requests: write
-  statuses: write
   contents: write
   checks: read
 
@@ -18,11 +17,40 @@ jobs:
         uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Wait for checks (excluding this workflow)
+        run: |
+          CURRENT_JOB="${{ github.job }}"
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          
+          while true; do
+            CHECKS=$(gh pr checks "$PR_URL" --jq '.[] | select(.name != env.CURRENT_JOB)')
+            
+            if [ -z "$CHECKS" ]; then
+              break
+            fi
+            
+            FAILED=$(echo "$CHECKS" | jq -r 'select(.conclusion != null and .conclusion != "success") | .name' | head -1)
+            if [ -n "$FAILED" ]; then
+              echo "Check failed: $FAILED"
+              exit 1
+            fi
+            
+            PENDING=$(echo "$CHECKS" | jq -r 'select(.conclusion == null) | .name' | head -1)
+            if [ -z "$PENDING" ]; then
+              break
+            fi
+            
+            echo "Waiting for: $PENDING"
+            sleep 10
+          done
+          
+          echo "All checks passed!"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Approve PR
         run: |
-          gh pr checks "$PR_URL" --watch --fail-fast
           gh pr review --approve "$PR_URL"
           gh pr merge --rebase --auto --delete-branch "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
