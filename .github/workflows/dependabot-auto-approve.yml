@@ -23,19 +23,19 @@ jobs:
           PR_URL="${{ github.event.pull_request.html_url }}"
           
           while true; do
-            CHECKS=$(gh pr checks "$PR_URL" --jq '.[] | select(.name != env.CURRENT_JOB)')
+            CHECKS=$(gh pr checks "$PR_URL" --json status,name --jq '.[] | select(.name != "'"$CURRENT_JOB"'")')
             
             if [ -z "$CHECKS" ]; then
               break
             fi
             
-            FAILED=$(echo "$CHECKS" | jq -r 'select(.conclusion != null and .conclusion != "success") | .name' | head -1)
+            FAILED=$(echo "$CHECKS" | jq -r 'select(.status != "completed" or .status == "failed") | .name' | head -1)
             if [ -n "$FAILED" ]; then
               echo "Check failed: $FAILED"
               exit 1
             fi
             
-            PENDING=$(echo "$CHECKS" | jq -r 'select(.conclusion == null) | .name' | head -1)
+            PENDING=$(echo "$CHECKS" | jq -r 'select(.status != "completed") | .name' | head -1)
             if [ -z "$PENDING" ]; then
               break
             fi
