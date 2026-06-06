@@ -21,29 +21,29 @@ jobs:
         run: |
           CURRENT_JOB="${{ github.job }}"
           PR_URL="${{ github.event.pull_request.html_url }}"
-          
+
           while true; do
-            CHECKS=$(gh pr checks "$PR_URL" --json status,name --jq '.[] | select(.name != "'"$CURRENT_JOB"'")')
-            
+            CHECKS=$(gh pr checks "$PR_URL" --json state,name --jq '.[] | select(.name != "'"$CURRENT_JOB"'")')
+
             if [ -z "$CHECKS" ]; then
               break
             fi
-            
-            FAILED=$(echo "$CHECKS" | jq -r 'select(.status != "completed" or .status == "failed") | .name' | head -1)
+
+            FAILED=$(echo "$CHECKS" | jq -r 'select(.state == "fail") | .name' | head -1)
             if [ -n "$FAILED" ]; then
               echo "Check failed: $FAILED"
               exit 1
             fi
-            
-            PENDING=$(echo "$CHECKS" | jq -r 'select(.status != "completed") | .name' | head -1)
+
+            PENDING=$(echo "$CHECKS" | jq -r 'select(.state != "pass") | .name' | head -1)
             if [ -z "$PENDING" ]; then
               break
             fi
-            
+
             echo "Waiting for: $PENDING"
             sleep 10
           done
-          
+
           echo "All checks passed!"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
