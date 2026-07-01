@@ -23,11 +23,11 @@
     "download-data": "ts-node-esm ./scripts/download-data/index.mts"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/node": "^7.29.7",
-    "@babel/preset-env": "^7.29.7",
-    "@babel/preset-react": "^7.29.7",
-    "@babel/preset-typescript": "^7.29.7",
+    "@babel/core": "^8.0.1",
+    "@babel/node": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
+    "@babel/preset-typescript": "^8.0.1",
     "@types/aws-lambda": "^8.10.162",
     "@types/aws-sdk": "^2.7.4",
     "@types/grecaptcha": "^3.0.9",
