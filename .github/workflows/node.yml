@@ -18,6 +18,13 @@ jobs:
       - name: Full Build
         run: |
           npm ci
+          echo "=== DIAGNOSTIC: babel install state ==="
+          node --version; npm --version
+          ls -la node_modules/@babel/ 2>&1 || echo "NO @babel dir"
+          ls -la node_modules/@babel/node/ 2>&1 || echo "NO @babel/node dir"
+          ls -la node_modules/@babel/node/lib/ 2>&1 || echo "NO lib dir"
+          npm ls @babel/node 2>&1 || true
+          echo "=== END DIAGNOSTIC ==="
           npm run build-and-test
       - name: Deploy
         if: github.ref == 'refs/heads/main'
