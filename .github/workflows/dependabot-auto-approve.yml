@@ -5,52 +5,13 @@ on: pull_request
 permissions:
   pull-requests: write
   contents: write
-  checks: read
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Wait for checks (excluding this workflow)
-        run: |
-          CURRENT_JOB="${{ github.job }}"
-          PR_URL="${{ github.event.pull_request.html_url }}"
-
-          # Wait for other checks to kick off
-          sleep 60
-
-          while true; do
-            CHECKS=$(gh pr checks "$PR_URL" --json state,name --jq '.[] | select(.name != "'"$CURRENT_JOB"'")')
-
-            if [ -z "$CHECKS" ]; then
-              break
-            fi
-
-            FAILED=$(echo "$CHECKS" | jq -r 'select(.state == "fail") | .name' | head -1)
-            if [ -n "$FAILED" ]; then
-              echo "Check failed: $FAILED"
-              exit 1
-            fi
-
-            PENDING=$(echo "$CHECKS" | jq -r 'select(.state != "pass") | .name' | head -1)
-            if [ -z "$PENDING" ]; then
-              break
-            fi
-
-            echo "Waiting for: $PENDING"
-            sleep 10
-          done
-
-          echo "All checks passed!"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Approve PR
+      - name: Approve and auto-merge
         run: |
           gh pr review --approve "$PR_URL"
           gh pr merge --rebase --auto --delete-branch "$PR_URL"
