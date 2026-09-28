@@ -23,7 +23,7 @@ jobs:
           ls -la node_modules/.bin/babel-node
           readlink -f node_modules/.bin/babel-node || true
           echo "--- trivial npm run ---"
-          time npm run --silent env > /dev/null && echo "npm-run-env ok"
+          time npm run nonexistent-diag-script > /dev/null 2>&1 || true
           ls node_modules/@babel/node/lib/babel-node.js && echo "EXISTS-after-trivial-run" || echo "GONE-after-trivial-run"
           echo "--- direct binary, bypassing npm run ---"
           time node_modules/.bin/babel-node --version || echo "direct babel-node failed: $?"
