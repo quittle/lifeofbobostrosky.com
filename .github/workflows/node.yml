@@ -18,6 +18,19 @@ jobs:
       - name: Full Build
         run: |
           npm ci
+          # Workaround: npm ci intermittently leaves node_modules/@babel/node
+          # without its lib/ directory, which breaks the build. Detect and
+          # repair it deterministically before building.
+          if [ ! -f node_modules/@babel/node/lib/babel-node.js ]; then
+            echo "@babel/node install is incomplete, repairing from registry tarball..."
+            rm -rf node_modules/@babel/node
+            mkdir -p node_modules/@babel/node
+            VER=$(node -p "require('./package-lock.json').packages['node_modules/@babel/node'].version")
+            curl -sL "https://registry.npmjs.org/@babel/node/-/node-${VER}.tgz" | tar xz -C node_modules/@babel/node --strip-components=1
+            [ -e node_modules/.bin/babel-node ] || ln -s ../@babel/node/bin/babel-node.js node_modules/.bin/babel-node
+            test -f node_modules/@babel/node/lib/babel-node.js || { echo "Repair failed"; exit 1; }
+            echo "Repair complete."
+          fi
           npm run build-and-test
       - name: Deploy
         if: github.ref == 'refs/heads/main'
