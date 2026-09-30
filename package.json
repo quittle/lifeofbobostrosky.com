@@ -37,7 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^8.61.0",
     "@typescript-eslint/parser": "^8.62.1",
     "@vue/preload-webpack-plugin": "^2.0.0",
-    "axios": "^1.17.0",
+    "axios": "^1.18.0",
     "babel-plugin-file-loader": "^2.0.0",
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.4",
@@ -62,7 +62,7 @@
     "typescript": "^6.0.3",
     "webpack": "^5.108.3",
     "webpack-cli": "^7.0.3",
-    "webpack-dev-server": "^5.2.5",
+    "webpack-dev-server": "^5.2.6",
     "webpack-image-resize-loader": "^5.0.0",
     "webpack-merge": "^6.0.1"
   }
