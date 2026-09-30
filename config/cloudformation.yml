@@ -57,7 +57,7 @@ Resources:
       Handler: s3-upload-custom-resource.handler
       MemorySize: 10240
       Timeout: 180
-      Runtime: nodejs14.x
+      Runtime: nodejs22.x
       Policies:
         - S3CrudPolicy:
             BucketName: !Ref LifeOfBobOstroskyComBucket
