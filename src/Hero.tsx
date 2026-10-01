@@ -52,7 +52,7 @@ export default function Hero(_props: Record<string, never>) {
   return (
     <div className={classes.heroWrapper} id={sections.home.id}>
       <Picture
-        alt="Bland-and-white photo of Robert Ostrosky in February 1967"
+        alt="Black-and-white photo of Robert Ostrosky in February 1967"
         classes={classes.heroImg}
         src="/src/images/pa-february-1967-1300.png"
         widths={[400, 600, 800, 1000]}
