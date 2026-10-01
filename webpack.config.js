@@ -36,7 +36,14 @@ const config = {
       },
       {
         test: /\.(svg)$/i,
-        use: ["file-loader"],
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|bmp)$/i,
@@ -46,10 +53,19 @@ const config = {
             loader: "file-loader",
             options: {
               publicPath: "https://lifeofbobostrosky.com/",
+              esModule: false,
             },
           },
           {
-            use: ["file-loader", "webpack-image-resize-loader"],
+            use: [
+              {
+                loader: "file-loader",
+                options: {
+                  esModule: false,
+                },
+              },
+              "webpack-image-resize-loader",
+            ],
           },
         ],
       },
