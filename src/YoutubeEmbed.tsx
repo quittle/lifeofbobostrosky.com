@@ -24,7 +24,7 @@ export default function YoutubeEmbed(props: Props) {
   url.searchParams.set("showinfo", (showInfo ?? false) ? "1" : "0");
   url.searchParams.set("playsinline", "1");
   return (
-    // eslint-disable-next-line react/iframe-missing-sandbox
+    // eslint-disable-next-line @eslint-react/dom-no-missing-iframe-sandbox
     <iframe
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
