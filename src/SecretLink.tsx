@@ -16,13 +16,13 @@ export default function SecretLink(props: {
     <a data-encoded-href={base64Encode(href)}>
       {parts.map((char, index) => (
         // Index is part of what's generated
-        // eslint-disable-next-line react/no-array-index-key
+        // eslint-disable-next-line @eslint-react/no-array-index-key
         <React.Fragment key={`${char}_${index}`}>
           <span aria-hidden style={{ display: "none" }}>
             word {index}
           </span>
           {char}
-          {/* eslint-disable-next-line react/no-danger */}
+          {/* eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml */}
           <span dangerouslySetInnerHTML={{ __html: `<!-- ${index} -->` }} />
         </React.Fragment>
       ))}

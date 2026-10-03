@@ -23,7 +23,7 @@ function main(): void {
     appRoot,
   ] = args;
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const AppElement: React.FunctionComponent = require(
     path.join(__dirname, appRoot),
   ).default;
@@ -31,11 +31,11 @@ function main(): void {
   const sheets = new SheetsRegistry();
 
   const appHtml = ReactDOMServer.renderToStaticMarkup(
-    // eslint-disable-next-line react/no-children-prop
     React.createElement(
       JssProvider,
       {
         registry: sheets,
+        // eslint-disable-next-line @eslint-react/jsx-no-children-prop, @eslint-react/jsx-no-children-prop-with-children -- JssProvider takes children: null alongside the rendered child element
         children: null,
       },
       React.createElement(AppElement),

@@ -1,7 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import react from "eslint-plugin-react";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
+import eslintReact from "@eslint-react/eslint-plugin";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
@@ -23,16 +23,18 @@ export default defineConfig([
     "**/*.jpg",
     "**/*.svg",
   ]),
+  // The flat config itself is not part of tsconfig.json, so it cannot be
+  // parsed with project-based type information; prettier still checks it.
+  globalIgnores(["eslint.config.mjs"]),
+  eslintReact.configs["recommended-typescript"],
   {
     extends: compat.extends(
       "eslint:all",
       "plugin:@typescript-eslint/recommended",
-      "plugin:react/all",
       "prettier",
     ),
 
     plugins: {
-      react,
       "@typescript-eslint": typescriptEslint,
     },
 
@@ -43,12 +45,6 @@ export default defineConfig([
 
       parserOptions: {
         project: "./tsconfig.json",
-      },
-    },
-
-    settings: {
-      react: {
-        version: "detect",
       },
     },
 
@@ -89,23 +85,6 @@ export default defineConfig([
 
       "dot-notation": "off",
 
-      "react/jsx-filename-extension": [
-        "error",
-        {
-          extensions: [".jsx", ".tsx"],
-        },
-      ],
-
-      "react/jsx-no-literals": "off",
-      "react/require-default-props": "off",
-
-      "react/jsx-max-depth": [
-        "error",
-        {
-          max: 6,
-        },
-      ],
-
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -118,6 +97,10 @@ export default defineConfig([
 
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-shadow": "error",
+
+      // Preserve the react/all-era iframe sandbox guard at YoutubeEmbed's
+      // single opt-out site; recommended-typescript does not enable it.
+      "@eslint-react/dom-no-missing-iframe-sandbox": "error",
     },
   },
   {

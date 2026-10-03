@@ -6,7 +6,7 @@ export default function Head(_props: Record<string, never>) {
   return (
     <head>
       <script
-        // eslint-disable-next-line react/no-danger
+        // eslint-disable-next-line @eslint-react/dom-no-dangerously-set-innerhtml
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
