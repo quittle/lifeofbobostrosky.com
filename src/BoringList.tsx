@@ -28,8 +28,8 @@ export default function BoringList(
   const styles = useStyles();
   return (
     <ul className={`${styles.list} ${join(listClassNames)}`}>
-      {React.Children.map(childrenArray, (entry) => (
-        <li className={join(listItemClassNames)} key={entry.id}>
+      {childrenArray.map((entry) => (
+        <li className={join(listItemClassNames)} key={entry.key}>
           {entry}
         </li>
       ))}

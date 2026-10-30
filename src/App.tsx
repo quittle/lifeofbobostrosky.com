@@ -88,7 +88,7 @@ const styleSheet = jss.createStyleSheet({
 });
 
 export default function App(_props: Record<string, never>) {
-  const jssContext = React.useContext(JssContext);
+  const jssContext = React.use(JssContext);
   jssContext!.registry!.add(styleSheet);
 
   return (
